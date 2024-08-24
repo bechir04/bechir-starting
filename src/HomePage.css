@@ -1,0 +1,35 @@
+/* HomePage.css */
+.home-page {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .home-page h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .home-page .carousel {
+    margin-bottom: 40px;
+  }
+  
+  .home-page .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .home-page .sections .section {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-page .sections .section h3 {
+    font-size: 24px;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+  }
+  
