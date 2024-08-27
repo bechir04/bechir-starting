@@ -1,5 +1,5 @@
 import React from 'react';
-import AthleteProfile from '../components/AthleteProfile';
+import AthleteProfile from '../../components/AthleteProfile/AthleteProfile';
 import './AthletesPage.css';
 
 function AthletesPage() {

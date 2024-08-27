@@ -1,18 +1,18 @@
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import NewsPage from './pages/NewsPage';
-import AboutPage from './pages/AboutPage';
-import PresidentMessagePage from './pages/PresidentMessagePage';
-import AthletesPage from './pages/AthletesPage';
-import EventsPage from './pages/EventsPage';
-import GalleryPage from './pages/GalleryPage';
-import MembershipPage from './pages/MembershipPage';
-import PartnersPage from './pages/PartnersPage';
-import ContactPage from './pages/ContactPage';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import HomePage from './pages/homePage/HomePage';
+import NewsPage from './pages/newsPage/NewsPage';
+import AboutPage from './pages/aboutPage/AboutPage';
+import PresidentMessagePage from './pages/presidentMessagePage/PresidentMessagePage';
+import AthletesPage from './pages/athletePage/AthletesPage';
+import EventsPage from './pages/eventPage/EventsPage';
+import GalleryPage from './pages/galleryPage/GalleryPage';
+import MembershipPage from './pages/membershipPage/MembershipPage';
+import PartnersPage from './pages/partnersPage/PartnersPage';
+import ContactPage from './pages/contactPage/ContactPage';
 
 import './App.css'; // Global styles
 

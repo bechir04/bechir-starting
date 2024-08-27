@@ -1,6 +1,6 @@
 import React from 'react';
-import Carousel from '../components/Carousel';
-import NewsList from '../components/NewsList';
+import Carousel from '../../components/caroussel/Carousel';
+import NewsList from '../../components/newsList/NewsList';
 import './HomePage.css';
 
 function HomePage() {

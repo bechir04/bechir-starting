@@ -1,5 +1,5 @@
 import React from 'react';
-import EventCalendar from '../components/EventCalendar';
+import EventCalendar from '../../components/eventCalendar/EventCalendar';
 import './EventsPage.css';
 
 function EventsPage() {

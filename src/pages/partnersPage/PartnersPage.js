@@ -1,5 +1,5 @@
 import React from 'react';
-import PartnerList from '../components/PartnerList';
+import PartnerList from '../../components/partnerList/PartnerList';
 import './PartnersPage.css';
 
 function PartnersPage() {
