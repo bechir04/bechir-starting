@@ -1,15 +1,12 @@
-// src/admin/Dashboard.js
+// src/admin/Dashboard/Dashboard.js
 import React from 'react';
-import './Dashboard.css'; // Ensure this CSS file exists
+import './Dashboard.css'; // Make sure this file exists if you have a CSS file
 
 const Dashboard = () => {
   return (
-    <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
-      <div className="dashboard-card">
-        <h3>Manage Content</h3>
-        <p>Manage news, events, athletes, and partners.</p>
-      </div>
+    <div className="dashboard">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome to the admin dashboard.</p>
     </div>
   );
 };

@@ -17,10 +17,10 @@ import PartnersPage from './pages/partnersPage/PartnersPage';
 import ContactPage from './pages/contactPage/ContactPage';
 
 // Admin Pages
-import Dashboard from './admin/Dashboard/Dashboard';
+import Dashboard from './admin/dashbord/Dashboard';
 import ManageNews from './admin/manageNews/ManageNews';
-import ManageEvents from './admin/ManageEvents/ManageEvents';
-import ManageAthletes from './admin/ManageAthlete/ManageAthlete';
+import ManageEvents from './admin/manageEvent/ManageEvents';
+import ManageAthletes from './admin/manageAthletes/ManageAthletes';
 import ManagePartners from './admin/managePartners/ManagePartners';
 import ManageCarousel from './admin/manageCarousel/ManageCarousel';
 import ManageGallery from './admin/manageGallery/ManageGallery';

@@ -27,7 +27,7 @@ const ManageEvents = () => {
   };
 
   return (
-    <div className="manage-events-container">
+    <div className="manage-events">
       <h1 className="manage-events-header">Manage Events</h1>
       
       <div className="events-form">
