@@ -1,0 +1,39 @@
+/* src/admin/ManagePartners.css */
+
+.manage-partners-container {
+    padding: 20px;
+    background-color: #e9ecef;
+    min-height: 100vh;
+  }
+  
+  .manage-partners-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .partners-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .partner-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .partner-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #212529;
+  }
+  
+  .partner-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  

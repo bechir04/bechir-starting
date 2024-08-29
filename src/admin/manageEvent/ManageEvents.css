@@ -1,0 +1,39 @@
+/* src/admin/ManageEvents.css */
+
+.manage-events-container {
+    padding: 20px;
+    background-color: #e9ecef;
+    min-height: 100vh;
+  }
+  
+  .manage-events-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .events-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .event-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .event-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #212529;
+  }
+  
+  .event-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  

@@ -1,0 +1,45 @@
+/* src/admin/ManageCarousel.css */
+
+.manage-carousel-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .manage-carousel-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .carousel-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .carousel-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .carousel-item h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #212529;
+  }
+  
+  .carousel-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  

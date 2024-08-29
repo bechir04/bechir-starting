@@ -9,9 +9,9 @@ function ContactPage() {
       <ContactForm />
       <section className="contact-info">
         <h3>Informations de contact</h3>
-        <p>Adresse : </p>
-        <p>Téléphone : </p>
-        <p>Email : </p>
+        <p>Adresse : nabeul </p>
+        <p>Téléphone : +216 66 666 666 </p>
+        <p>Email : starting-club@gmail.com </p>
        
       </section>
     </div>

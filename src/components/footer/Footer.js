@@ -9,8 +9,8 @@ function Footer() {
         <ul className="social-links">
           <li><a href="https://facebook.com">Facebook</a></li>
           <li><a href="https://twitter.com">Twitter</a></li>
-          <li><a href="https://instagram.com">Instagram</a></li>
-        </ul>
+          <li><a href="https://instagram.com/193_fx" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
       </div>
     </footer>
   );
