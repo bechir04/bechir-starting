@@ -1,27 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';
+import React, { useState } from "react";
+import { Button } from 'antd';
+import { useNavigate , Link} from 'react-router-dom';
+import "./Header.css";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('./login');
+  };
+
   return (
     <header className="header">
-      <div className="logo">
-        <Link to="/">Club d'Athlétisme</Link>
+      <h2 className="header-left"> Club d'Athltisme</h2>
+      
+      
+      <div className="header-right">
+
+        <Button className="btn-login" onClick={handleLoginClick}>Login</Button>
+        
+        <button className="menu-button" >
+          <div className="menu-icon"></div>
+        </button>
+        
+        <nav>
+          <ul>
+              <li><Link className='navlinks' to='/'>Home</Link></li>
+              <li><Link className='navlinks' to='/news'>Acutalité</Link></li>
+              <li><Link className='navlinks' to='/about'>À Propos</Link></li>
+              <li><Link className='navlinks' to='/president-message'>Mot du Président</Link></li>
+              <li><Link className='navlinks' to='/athletes'>Athlètes</Link></li>
+              <li><Link className='navlinks' to='/events'>Événements</Link></li>
+              <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
+              <li><Link className='navlinks' to='/'>Adhésion</Link></li>
+              <li><Link className='navlinks' to='/'>Blog </Link></li>
+          </ul>
+      </nav> 
       </div>
-      <nav>
-        <ul>
-          <li><Link to="/">Accueil</Link></li>
-          <li><Link to="/news">Actualités</Link></li>
-          <li><Link to="/about">À Propos</Link></li>
-          <li><Link to="/president">Mot du Président</Link></li>
-          <li><Link to="/athletes">Athlètes</Link></li>
-          <li><Link to="/events">Événements</Link></li>
-          <li><Link to="/gallery">Galerie</Link></li>
-          <li><Link to="/membership">Adhésion</Link></li>
-          <li><Link to="/partners">Partenaires</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
     </header>
   );
 }

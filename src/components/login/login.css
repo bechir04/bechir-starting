@@ -1,0 +1,19 @@
+.auth-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+    overflow: hidden;
+    height: 100%;
+    background-color: #6b5d4a;
+}
+.auth-content{
+    overflow:hidden ;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 1em;
+    height: 60%;
+    max-width: 600px;
+    width: 100%;
+    background-image: linear-gradient(to bottom left, rgb(206, 139, 14) , rgb(43, 235, 0)  );
+}

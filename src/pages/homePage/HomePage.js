@@ -1,6 +1,5 @@
 import React from 'react';
-import Carousel from '../../components/caroussel/Carousel';
-import NewsList from '../../components/newsList/NewsList';
+import {NewsList , Header} from '../../components/index';
 import './HomePage.css';
 
 function HomePage() {
@@ -16,10 +15,11 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <Carousel images={images} />
       <section className="latest-news">
         <h2>Dernières Actualités</h2>
         <NewsList articles={articles} />
+      </section>
+      <section>
       </section>
       <section className="quick-links">
         <h2>Liens Rapides</h2>
