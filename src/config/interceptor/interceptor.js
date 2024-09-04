@@ -44,13 +44,12 @@ const tokenlessPaths = ["login", "register", "refresh"];
 Interceptor.interceptors.request.use(
   (config) => {
     const AUTH_TOKEN = localStorage.getItem("token");
-    const isTokenManagementRequest = tokenlessPaths.some((path) =>
-      config.url.includes(path)
-    ); //true if tokenless pass exist
+    const isTokenRequest = tokenlessPaths.some((path) =>config.url.includes(path)
+    ); //true if tokenless path exist
 
-    config.headers[TOKEN_PAYLOAD_KEY] = null;
-    if (!isTokenManagementRequest) {
+    if (!isTokenRequest) {
       const jwtToken = AUTH_TOKEN || null;
+      
       if (jwtToken) {
         config.headers[TOKEN_PAYLOAD_KEY] = `Bearer ${jwtToken}`;
       }
@@ -67,21 +66,21 @@ Interceptor.interceptors.request.use(
 
 
 Interceptor.interceptors.response.use(
-  (repsonse) => {
-    return repsonse.data;
+  (response) => {
+    return response.data;
   },
   (error) => {
 
     let notif = {
       message: "",
+      description:""
     };
 
-    const status = error.repsonse ? error.repsonse.status : "500";
+    const status = error.response ? error.response.status : "500";
     notif.message = statusMessages[status] || "unknown error";
-    notif.description = error.repsonse.data.errors;
+    notif.description = error.response.data.errors;
 
-    console.log("error" + notif);
-
+  
     //if token is expired
     if (status === 403) {
       const expiredAccessToken = localStorage.getItem("token");

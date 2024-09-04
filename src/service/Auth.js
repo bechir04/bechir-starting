@@ -4,11 +4,11 @@ import fetch from "../config/interceptor/interceptor";
 
 export const loginService= (data) => {
     return fetch({
-        method : 'post' ,
-        url : BaseUrl + APIS.AUTH.login ,
+        method : 'post',
+        url : BaseUrl + APIS.AUTH.login,
         data,
-        Header : {}
-    });
+        headers : {'Content-Type':'application/json'}
+    })
 }
 
 export const registerService= async (data) => {
@@ -19,16 +19,17 @@ export const registerService= async (data) => {
     });
 }
 
-export const logoutService= async () => {
+export const logoutService= async (token) => {
     return fetch({
-        method : 'get' ,
-        url : BaseUrl + APIS.AUTH.logout ,
-    });
+        method : 'get',
+        url : BaseUrl + APIS.AUTH.logout,
+        headers : {'Authorization' :`Bearer ${token}`}
+    })
 }
 
-export const refreshAccessToken = async  (refreshToken, expiredAccessToken) => {
-  return fetch({
-    method: "get",
-    url: BaseUrl + APIS.AUTH.refreshToken +`/${refreshToken}?expiredToken=${expiredAccessToken}`,
-  });
+export const refreshAccessToken = async  (refreshToken, expiredAccessToken) => {    
+    return fetch({
+        method: "get",
+        url: BaseUrl + APIS.AUTH.refreshToken +`/${refreshToken}?expiredToken=${expiredAccessToken}`,
+    });
 };
