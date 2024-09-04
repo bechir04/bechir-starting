@@ -14,30 +14,46 @@ import GalleryPage from "./pages/galleryPage/GalleryPage";
 import MembershipPage from "./pages/membershipPage/MembershipPage";
 import PartnersPage from "./pages/partnersPage/PartnersPage";
 import ContactPage from "./pages/contactPage/ContactPage";
-import {Login,Signup} from "./components"
+import { Dashboard, Login, Signup, AdminRoute , PublicRoute } from "./components";
+import store from "./redux/store";
 
 import "./App.css";
+import { Provider } from "react-redux";
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/news" element={<NewsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/president-message" element={<PresidentMessagePage />} />
-        <Route path="/athletes" element={<AthletesPage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/membership" element={<MembershipPage />} />
-        <Route path="/partners" element={<PartnersPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/president-message" element={<PresidentMessagePage />} />
+          <Route path="/athletes" element={<AthletesPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/membership" element={<MembershipPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+
+          <Route path="/Dashboard" element={
+              <AdminRoute>
+                <Dashboard />
+              </AdminRoute>
+              }
+          />
+          <Route path="/" element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+              }
+          />
+        </Routes>
+        <Footer />
+      </Router>
+    </Provider>
   );
 };
 

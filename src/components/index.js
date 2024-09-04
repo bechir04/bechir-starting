@@ -8,3 +8,7 @@ export {default as NewsList} from "./newsList/NewsList";
 export {default as PartnerList} from "./partnerList/PartnerList";
 export {default as Login} from  "./login/Login";
 export {default as Signup} from  "./signup/Signup";
+export {default as Dashboard} from "./dashbord/Dashboard" ;
+
+export {default as AdminRoute} from "./adminRoute/adminRoute" ;
+export {default as PublicRoute} from "./publicRoute/publicRoute" 
