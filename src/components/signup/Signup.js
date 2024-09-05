@@ -3,10 +3,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import React from "react";
 import { registerService } from "../../service/auth/Auth";
+
 import "./signup.css";
 
 const { Option } = Select;
-
+const regexs ={
+    emailRegex : "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" 
+}
 const Signup = () => {
   const Navigate = useNavigate();
   const [signupData, setSignupData] = useState({
@@ -20,6 +23,35 @@ const Signup = () => {
     branch: "",
   });
 
+  const validateConfirmPassword = (rule , ConfirmPassword) => {
+    if(ConfirmPassword != signupData.password){
+     return Promise.reject('confrim password do not match password')
+    }
+    return Promise.resolve();
+   }
+
+   /**const validateEmail = (rule , currEmail) => {
+    if(regexs.emailRegex.test(currEmail)){
+        return Promise.resolve() ;
+    }
+    return Promise.reject('email do not match email standards');
+   }  */
+
+   const validateDateOfBirth = (rule,dateOfBirth)=> {
+    const today = new Date();
+    const minRequiredDate = new Date() ;
+    const selectedDate = new Date(dateOfBirth)
+    const minAge = 6 ;  
+
+    minRequiredDate.setFullYear(today.getFullYear() - minAge) ;
+    
+
+    if(selectedDate > minRequiredDate){
+        return Promise.reject("Date of birth must be at least ", minAge,"years ago") ;
+    }
+    return Promise.resolve();
+   }
+
   const handledataChange = (e) => {
     const { name, value } = e.target;
     setSignupData({
@@ -32,11 +64,13 @@ const Signup = () => {
     try{
         console.log('signup Data:', data);
         await registerService(data);
-        notification.info({ message: 'Please check your email for verification.' , placement: 'topRight', duration: 30});
+        notification.info({ message: 'Please check your email for verification.' , placement: 'topRight', duration: 20});
     }catch(err) {
         message.error('Sign up failed. Please try again.');
     }
   };
+
+  
 
   return (
     <div className="signup-container">
@@ -86,6 +120,7 @@ const Signup = () => {
               rules={[
                 { required: true, message: "Ce champs est obligatoire" },
                 { type: "email", message: "veuillez entre un email valide" },
+                //{validator: validateEmail}
               ]}
             >
               <Input
@@ -109,6 +144,19 @@ const Signup = () => {
               />
             </Form.Item>
 
+
+            <label>Confirm Password</label>
+            <Form.Item
+              name="confirmPassword"
+              rules={[
+                { required: true, message: 'Please confirm your password' },
+                { validator: validateConfirmPassword },
+              ]}
+            >
+              <Input.Password  name="confirmPassword" />
+            </Form.Item>
+
+
             {/* PhoneNumber */}
             <label>PhoneNumber :</label>
             <Form.Item
@@ -123,11 +171,11 @@ const Signup = () => {
                 },
               ]}
             >
-              <Input
+            <Input
                 name="phoneNumber"
                 value={signupData.phoneNumber}
                 onChange={handledataChange}
-              />
+            />
             </Form.Item>
 
             {/* Licence ID */}
@@ -149,7 +197,12 @@ const Signup = () => {
             <Form.Item
               className="dateOfBirth"
               name="dateOfBirth"
-              rules={[{ required: true, message: "Date of birth is required" }]}
+              rules={[
+                    { required: true, message: "Date of birth is required" },
+                    {validator: validateDateOfBirth}
+                ]
+                   
+            }
             >
               <DatePicker
                 name="dateOfBirth"

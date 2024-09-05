@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom left, rgb(206, 139, 14), rgb(43, 235, 0));
+    background-image: linear-gradient(to bottom left, rgb(206, 139, 14) , rgb(43, 235, 0)  );
+
     padding: 20px;
 }
 
@@ -15,38 +16,33 @@
     max-width: 800px;
     width: 100%;
 }
-
-/* Grid layout for form items */
-.signup-form {
+.signup-from{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    gap: 20px; /* Spacing between inputs */
+    margin-bottom: 20px; /* Margin below the grid */
+}
+
+.ant-typography {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 20px;
+    color: #333;
 }
 
-/* Form items: label and input side by side */
-.ant-form-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-/* Label styles */
 label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: 500;
     color: #555;
-    margin-right: 10px;
-    flex: 1;
 }
 
-/* Input styles */
 .ant-input,
 .ant-input-password,
 .ant-select-selector,
 .ant-picker {
-    flex: 2;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -60,6 +56,10 @@ label {
 .ant-picker-focused {
     border-color: #40a9ff;
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-form-item {
+    margin-bottom: 20px;
 }
 
 .ant-btn-primary {
@@ -77,18 +77,29 @@ label {
     border-color: #40a9ff;
 }
 
-/* Adjustments for small screens */
-@media (max-width: 768px) {
-    .signup-form {
-        grid-template-columns: 1fr; /* Stack the inputs in one column */
+@media (max-width: 500px) {
+    .auth-content {
+        padding: 20px;
     }
-    
-    .ant-form-item {
-        flex-direction: column; /* Stack label and input vertically */
-        align-items: flex-start;
+
+    .ant-typography {
+        font-size: 20px;
     }
-    
+
     label {
         margin-bottom: 6px;
+    }
+
+    .ant-input,
+    .ant-input-password,
+    .ant-select-selector,
+    .ant-picker {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .ant-btn-primary {
+        padding: 8px;
+        font-size: 14px;
     }
 }
