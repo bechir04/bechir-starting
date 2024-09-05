@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Default white background for all pages */
+    color: #333; /* Default text color */
+}
+
+body.login-page {
+    background: linear-gradient(to right, #1bdf01, #ea610c); /* Gradient background for the login/signup pages */
+    color: #fff; /* White text color for better contrast */
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+}
+
+.auth-description {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    width: 100%;
+    max-width: 400px; /* Maximum width */
+    margin-right: 20px;
+    text-align: center;
+}
+
+.auth-content {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    width: 100%;
+    max-width: 400px; /* Maximum width */
+    text-align: center;
+}
+
+/* Title Styles */
+.sports-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5em; /* Large font size for emphasis */
+    letter-spacing: 2px; /* Spacing between letters for a bold effect */
+    text-transform: uppercase; /* Uppercase letters for impact */
+    color: #ffffff; /* White text for contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+.sports-paragraph {
+    font-family: 'Roboto', sans-serif; /* Consistent with subtitle */
+    font-size: 1em;
+    line-height: 1.6; /* Improved readability */
+    color: #e0e0e0; /* Light text color */
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.submit-btn {
+    font-family: 'Bebas Neue', sans-serif; /* Bold font for consistency */
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff; /* White text for contrast */
+    background-color: #ff7300; /* Vibrant color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #00a2cc; /* Color change on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
