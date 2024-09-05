@@ -1,5 +1,5 @@
-import { BaseUrl, APIS } from "../config/constants/URLS";
-import fetch from "../config/interceptor/interceptor";
+import { BaseUrl, APIS } from "../../config/constants/URLS";
+import fetch from "../../config/interceptor/interceptor";
 
 
 export const loginService= (data) => {
@@ -15,7 +15,8 @@ export const registerService= async (data) => {
     return fetch({
         method : 'post' ,
         url : BaseUrl + APIS.AUTH.register ,
-        data
+        data ,
+        headers : {'Content-Type':'application/json'}
     });
 }
 

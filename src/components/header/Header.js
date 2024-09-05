@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, notification } from 'antd';
 import { useNavigate , Link} from 'react-router-dom';
 import { AuthAction } from '../../redux/actions';
-import { logoutService } from '../../service/Auth';
+import { logoutService } from '../../service/auth/Auth';
 
 import "./Header.css";
 import { useSelector , useDispatch } from "react-redux";

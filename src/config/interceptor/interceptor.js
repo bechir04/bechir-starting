@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { refreshAccessToken } from "../../service/Auth";
+import { refreshAccessToken } from "../../service/auth/Auth";
 import { BaseUrl } from "../constants/URLS";
 import { notification } from "antd";
 

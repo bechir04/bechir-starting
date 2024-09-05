@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography, message, notification } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import React from 'react';
-import { loginService } from '../../service/Auth';
+import { loginService } from '../../service/auth/Auth';
 import { useDispatch } from 'react-redux';
 import { AuthAction } from '../../redux/actions';
 import './login.css';
@@ -28,7 +28,7 @@ const Login = () => {
     }
 
     const handleLoginClick = (data) => {
-        console.log('Form Data:', data);
+        console.log('login Data:', data);
         loginService(data).then((response) => {
             console.log('API Response:', response);
             localStorage.setItem('token', response.accessToken);
