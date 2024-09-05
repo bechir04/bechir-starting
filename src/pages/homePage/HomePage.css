@@ -1,0 +1,128 @@
+
+/* HomePage.css */
+
+/* General styles */
+.home-page {
+    padding: 20px;
+    background: rgb(111,251,63);
+    background: radial-gradient(circle, rgba(111,251,63,1) 0%, rgba(215,254,201,1) 35%, rgba(242,147,73,1) 65%, rgba(239,90,9,1) 100%);    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  /* Club Logo with hover effect */
+  .club-logo {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .club-logo img {
+    width: 300px;
+    transition: transform 1.3s ease, 
+  }
+  
+  .logo-hover:hover {
+    transform: scale(1.5);
+  }
+  
+  /* Animated Description */
+  .club-description {
+    margin: 40px 0;
+  }
+  
+  .club-description h2 {
+    font-size: 32px;
+    color: #ff7300;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  .animated-description {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  /* Fade-in effect for description */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Club Image Carousel */
+  .club-carousel {
+    margin: 30px auto; /* Center the carousel */
+    max-width: 80%; /* Limit the width to 80% of the page */
+  }
+  
+  .club-carousel h2 {
+    font-size: 28px;
+    color: #ff7300;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-image {
+    width: 100%; /* Ensure the image takes up the full width of the carousel */
+    height: auto; /* Keep the aspect ratio */
+    max-height: 400px; /* Limit the height to a reasonable size */
+    object-fit: cover; /* Crop the image to fit within the bounds */
+  }
+  
+  /* Partners Section */
+  .partners-section {
+    margin: 50px 0;
+  }
+  
+  .partners-section h2 {
+    font-size: 28px;
+    color: #ff7300;
+    margin-bottom: 20px;
+  }
+  
+  .partners-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .partner-logo {
+    max-width: 150px; /* Adjust the size of partner logos */
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .partner-logo:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .carousel-image {
+      height: 250px;
+    }
+  
+    .partner-logo {
+      width: 120px;
+    }
+  
+    .club-description h2 {
+      font-size: 26px;
+    }
+  
+    .club-description p {
+      font-size: 16px;
+    }
+  
+    .club-carousel h2, .partners-section h2 {
+      font-size: 24px;
+    }
+  }
+  

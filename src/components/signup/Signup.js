@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import React from "react";
 import { registerService } from "../../service/auth/Auth";
 
-import "./signup.css";
+import '../login/login.css';
 
 const { Option } = Select;
 const regexs ={
@@ -73,9 +73,9 @@ const Signup = () => {
   
 
   return (
-    <div className="signup-container">
-      <div className="signup-content">
-        <Typography.Title>Signup</Typography.Title>
+    <div className="auth-container">
+      <div className="auth-content">
+        <Typography.Title className='auth-title'>Signup</Typography.Title>
         <Form name="signup-from" className="signup-from" onFinish={handleSignupClick}>
           <div className="from-grid">
             {/* Firstname */}
@@ -234,7 +234,7 @@ const Signup = () => {
               </Select>
             </Form.Item>
           </div>
-          <Button name='submit' type='primary' htmlType='submit'>SignUp</Button>
+          <Button name='submit' className="submit-btn" type='primary' htmlType='submit'>SignUp</Button>
         </Form>
       </div>
     </div>

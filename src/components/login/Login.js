@@ -1,6 +1,6 @@
 
-import { Form, Input, Button, Typography, message, notification } from 'antd';
-import { useState } from 'react';
+import { Form, Input, Button, Typography, notification } from 'antd';
+import { useState  , useEffect} from 'react';
 import { useNavigate } from 'react-router';
 import React from 'react';
 import { loginService } from '../../service/auth/Auth';
@@ -13,6 +13,13 @@ import './login.css';
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        document.body.classList.add('login-page');
+        return () => {
+            document.body.classList.remove('login-page');
+        };
+    }, []);
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -55,7 +62,7 @@ const Login = () => {
         <div className='auth-container'>
             <div className='auth-content'>
                 <Form method='POST' name='login-from' className='login-from' onFinish={handleLoginClick}>
-                    <Typography.Title>Login</Typography.Title>
+                    <Typography.Title className='sports-title'>Login</Typography.Title>
 
                     <label>Email :</label>
                     <Form.Item
@@ -77,10 +84,10 @@ const Login = () => {
                             { required: true, message: 'Ce champ est obligatoire' }
                         ]}
                     >
-                        <Input.Password name='password' value={loginData.password} onChange={(e) => handleDataChange(e)} />
+                        <Input.Password name='password'  value={loginData.password} onChange={(e) => handleDataChange(e)} />
                     </Form.Item>
-                    <Button name='submit' type='primary' htmlType='submit' style={{ marginRight: '10px' } } >Login</Button>
-                    <Button type="primary" onClick={handleSignUpClick}>SignUp</Button>
+                    <Button name='submit' type='primary' className='submit-btn' htmlType='submit' style={{ marginRight: '10px' } } >Login</Button>
+                    <Button type="primary"  className='submit-btn' onClick={handleSignUpClick}>SignUp</Button>
                 </Form>
             </div>
         </div>
