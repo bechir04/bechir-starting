@@ -61,10 +61,10 @@ function Header() {
         <nav>
           <ul>
               <li><Link className='navlinks' to='/'>Home</Link></li>
-              <li><Link className='navlinks' to='/news'>Acutalité</Link></li>
               <li><Link className='navlinks' to='/about'>À Propos</Link></li>
               <li><Link className='navlinks' to='/president-message'>Mot du Président</Link></li>
               <li><Link className='navlinks' to='/athletes'>Athlètes</Link></li>
+              <li><Link className='navlinks' to='/news'>Acutalité</Link></li>
               <li><Link className='navlinks' to='/events'>Événements</Link></li>
               <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
               <li><Link className='navlinks' to='/'>Adhésion</Link></li>

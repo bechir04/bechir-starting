@@ -3,7 +3,8 @@ import axios from "axios";
 import { refreshAccessToken } from "../../service/auth/Auth";
 import { BaseUrl } from "../constants/URLS";
 import { notification } from "antd";
-
+import store from '../../redux/store';
+import { LoaderAction } from "../../redux/actions";
 
 const Interceptor = axios.create({
   baseURL: BaseUrl,
@@ -43,6 +44,7 @@ const tokenlessPaths = ["login", "register", "refresh"];
 
 Interceptor.interceptors.request.use(
   (config) => {
+    store.dispatch(LoaderAction.toggleLoader(true)) ;
     const AUTH_TOKEN = localStorage.getItem("token");
     const isTokenRequest = tokenlessPaths.some((path) =>config.url.includes(path)
     ); //true if tokenless path exist
@@ -57,6 +59,8 @@ Interceptor.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log("intercepter error : ",error);
+    
     notification.error({
       message: "Error",
     });
@@ -67,10 +71,11 @@ Interceptor.interceptors.request.use(
 
 Interceptor.interceptors.response.use(
   (response) => {
+    store.dispatch(LoaderAction.toggleLoader(false));
     return response.data;
   },
   (error) => {
-
+    store.dispatch(LoaderAction.toggleLoader(false));
     let notif = {
       message: "",
       description:""
@@ -78,12 +83,14 @@ Interceptor.interceptors.response.use(
 
     const status = error.response ? error.response.status : "500";
     notif.message = statusMessages[status] || "unknown error";
-    notif.description = error.response.data.errors;
-
+    notif.description = error.response.errors;
+    console.log("status error :",status);
   
     //if token is expired
     if (status === 403) {
       const expiredAccessToken = localStorage.getItem("token");
+      console.log("expired token :",expiredAccessToken);
+      
       const refreshToken = localStorage.getItem("refreshToken");
 
       notification.info({
@@ -94,17 +101,12 @@ Interceptor.interceptors.response.use(
 
       refreshAccessToken(refreshToken, expiredAccessToken)
         .then((resp) => {
-          localStorage.setItem("token", resp.data.accessToken);
-          localStorage.setItem("refreshToken", resp.data.refreshToken);
+          localStorage.setItem("token", resp.accessToken);
+          localStorage.setItem("refreshToken", resp.refreshToken);
           window.location.reload();
         })
         .catch((err) => {
-          notif.error({
-            message: "Session Expired",
-            description: "Please log in again.",
-            duration: 3,
-          });
-          window.location.href = "/login";
+          console.log(err);
         });
     }
     notification.error(notif);

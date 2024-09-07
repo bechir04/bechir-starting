@@ -14,7 +14,7 @@
     "react-router": "^6.26.1",
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
-    "react-slic²k": "^0.30.2",
+    "react-slick": "^0.30.2",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
