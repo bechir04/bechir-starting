@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { Toolbar } from '../../components';
 import { fetchAllEvents } from '../../service/event/event';
-import { Card, Button } from "antd";
-
+import { Card, Button, Select } from "antd";
+import { useNavigate } from 'react-router-dom';
 
 import './EventsPage.css';
+const { Option } = Select;
 
 function EventsPage() {
   /**const events = [
@@ -16,15 +17,23 @@ function EventsPage() {
 
 
   const columns = [
-    { value: "title", label: "Title" },
     { value: "createdAt", label: "created At" },
-    {value :'date' , label:"Date"}
-  ];
+    { value :'date' , label:"Date"}, 
+    { value: "title", label: "Title"}
+    ];
+
+  const types =[
+    { value: "LONGUEUR", label: "longuer" },
+    { value: "_100M", label: "100 m" },
+    { value :'_400m' , label:"400 m"},    
+    { value :'_800M' , label:"800 m"},   
+  ]
   const isLoading = useSelector((state) => state.loader.state);
   const [pageNumber ,setPageNumber] = useState(1);
   const [sortedBy , setSortedBy] = useState('createdAt');
   const [events , setEvents]= useState([]);
-
+  const[selectedType , setSelectedType] = useState('');
+  const navigate = useNavigate(); 
 
   const onPageNumberChange = (value)=> {
     setPageNumber(value) ;
@@ -33,24 +42,27 @@ function EventsPage() {
     setSortedBy(value);
   }
 
-  const fetchAllEventsData = async(pageNumber ,sortedBy)=>{
+  const fetchAllEventsData = async(pageNumber ,sortedBy , selectedType)=>{
    try {
-    const data = await fetchAllEvents(pageNumber ,sortedBy) ;
+    const data = await fetchAllEvents(pageNumber ,sortedBy , selectedType) ;
     console.log("events in endpoint call: " , data);
     setEvents(data) ;
   }catch(err){
     console.log("error :", err)
   }
   }
+  const handleSeeAllButtonClick =(eventId)=>{
+    navigate(`/event-details/${eventId}`)
+  }
 
   useEffect(()=>{
-    fetchAllEventsData(pageNumber ,sortedBy);
-  },[pageNumber,sortedBy])
+    fetchAllEventsData(pageNumber ,sortedBy , selectedType);
+  },[pageNumber,sortedBy, selectedType])
 
 
   return (
     <div className="events-page">
-      <h2>Événements à Venir</h2>
+      <h2>Événements</h2>
       <Toolbar 
         pageNumber={pageNumber}
         onPageNumberChange={onPageNumberChange}
@@ -58,6 +70,21 @@ function EventsPage() {
         onSortedByChange={onSortedByChange}
         columns={columns}
       />
+      {/** selecting all events by type */}
+      {/**<Select
+        name="selectedType"
+        value={selectedType}
+        onChange={(value) => setSelectedType(value || '')}
+        style={{ width: 200 }}
+      >
+        <Option value=''>All</Option>
+        {
+          types.map((type) =>{
+            return (<Option value={type.value}>{type.label}</Option>) ;
+          }
+        )}
+      </Select>
+ */}
       <div className="event-calendar">
       {events.length === 0 ? (
         <p>there is no events to load yet !</p>
@@ -71,7 +98,7 @@ function EventsPage() {
               <h3>{event.title}</h3>
               <p>{event.date} - {event.location}</p>
               <p>{event.type}</p>
-              <Button type="primary">Lire plus</Button>
+              <Button type="primary" onClick={() => handleSeeAllButtonClick(event.id)}>Lire plus</Button>
             </Card>
         ))
       )

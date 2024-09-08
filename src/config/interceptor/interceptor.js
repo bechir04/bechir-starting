@@ -44,8 +44,10 @@ const tokenlessPaths = ["login", "register", "refresh"];
 
 Interceptor.interceptors.request.use(
   (config) => {
+    console.log('Request config:', config);
     store.dispatch(LoaderAction.toggleLoader(true)) ;
     const AUTH_TOKEN = localStorage.getItem("token");
+    console.log('interceptor token passed : ', AUTH_TOKEN);
     const isTokenRequest = tokenlessPaths.some((path) =>config.url.includes(path)
     ); //true if tokenless path exist
 
@@ -54,8 +56,10 @@ Interceptor.interceptors.request.use(
       
       if (jwtToken) {
         config.headers[TOKEN_PAYLOAD_KEY] = `Bearer ${jwtToken}`;
+        
       }
     }
+    console.log('Request headers:', config.headers);
     return config;
   },
   (error) => {

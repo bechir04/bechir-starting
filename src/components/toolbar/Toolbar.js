@@ -7,7 +7,6 @@ const Toolbar = ({
   onPageNumberChange,
   sortedBy,
   onSortedByChange,
-  
   columns,
 }) => {
   return (

@@ -19,8 +19,23 @@ export const APIS ={
     EVENT :{
         createEvent :'/events',
         fetchEvent :(id) => `/events/${id}` ,
-        fetchAllEvents :(pageNumber,sortedBY) => `/events/page/${pageNumber}?sortedBY=${sortedBY}`,
+        fetchAllEvents :(pageNumber,sortedBY ,type) => `/events?pageNumber=${pageNumber}&sortedBY=${sortedBY}&type=${type}`,
         updateEvent :(id) => `/events/${id}` ,
-        deleteEventById : (id) => `/events/${id}`
-    } 
+        deleteEventById : (id) => `/events/${id}`,
+    },
+    EVENTREGISTRATION :{
+        registerAthleteToEvent : (eventId) => `/register_event/${eventId}`,
+        getAllParticipants :(eventId) => `/register_event/${eventId}/participants` ,
+        isAthleteRegistered : (eventId , athleteId) => `/register_event/is_registered/${eventId}/${athleteId}` ,
+        deleteAthleteFromEvent : (eventId , athleteId) => `/register_event/admin/${eventId}/${athleteId}`
+    },
+    EVENTPERFORMANCE :{
+        assignNoteEventToAthlete : (athleteId , eventId, note) => `/event_performance/${athleteId}/${eventId}?note=${note}`, 
+        fetchAllAthleteNoteByEventId :(eventId)=> `/event_performance/event/${eventId}`,
+        fetchAllNotesByAthleteId : (athleteId)=> `/event_performance/athlete/${athleteId}`,
+        updateNoteEventOfAthlete :(athleteId , eventId)=> `/event_performance/${athleteId}/${eventId}`,
+        deleteEventPerformance :(athleteId , eventId)=> `/event_performance/${athleteId}/${eventId}`,
+
+    }
+
 }

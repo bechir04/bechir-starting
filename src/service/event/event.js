@@ -18,10 +18,10 @@ export const fetchEvent = (id) =>{
     });
 }
 
-export const fetchAllEvents = (pageNumber,sortedBY) =>{
+export const fetchAllEvents = (pageNumber,sortedBY , type) =>{
     return fetch({
         method : "get" ,
-        url : BaseUrl+APIS.EVENT.fetchAllEvents(pageNumber,sortedBY) ,
+        url : BaseUrl+APIS.EVENT.fetchAllEvents(pageNumber,sortedBY , type) ,
     });
 }
 
