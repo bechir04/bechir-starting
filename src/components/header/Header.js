@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import { Button, notification } from 'antd';
 import { useNavigate , Link} from 'react-router-dom';
 import { AuthAction } from '../../redux/actions';
@@ -60,20 +60,25 @@ function Header() {
         
         <nav>
           <ul>
+            {!isAuthenticated ? (
               <li><Link className='navlinks' to='/'>Home</Link></li>
-              <li><Link className='navlinks' to='/news'>Acutalité</Link></li>
-              <li><Link className='navlinks' to='/about'>À Propos</Link></li>
-              <li><Link className='navlinks' to='/president-message'>Mot du Président</Link></li>
-              <li><Link className='navlinks' to='/athletes'>Athlètes</Link></li>
-              <li><Link className='navlinks' to='/events'>Événements</Link></li>
-              <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
-              <li><Link className='navlinks' to='/'>Adhésion</Link></li>
-              <li><Link className='navlinks' to='/'>Blog </Link></li>
-              { (userRole === "ROLE_SUPER_ADMIN" || userRole === "ROLE_ADMIN") &&
-              <li><Link className='navlinks' to='/dashboard'>Admin Dashboard</Link></li>
-              }
+            ) : (
+              <>
+                <li><Link className='navlinks' to='/about'>À Propos</Link></li>
+                <li><Link className='navlinks' to='/president-message'>Mot du Président</Link></li>
+                <li><Link className='navlinks' to='/athletes'>Athlètes</Link></li>
+                <li><Link className='navlinks' to='/news'>Actualité</Link></li>
+                <li><Link className='navlinks' to='/events'>Événements</Link></li>
+                <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
+                <li><Link className='navlinks' to='/membership'>Adhésion</Link></li>
+                <li><Link className='navlinks' to='/blog'>Blog</Link></li>
+                {(userRole === "ROLE_SUPER_ADMIN" || userRole === "ROLE_ADMIN") && (
+                  <li><Link className='navlinks' to='/dashboard'>Admin Dashboard</Link></li>
+                )}
+              </>
+            )}
           </ul>
-      </nav> 
+        </nav> 
       </div>
     </header>
   );

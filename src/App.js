@@ -14,7 +14,7 @@ import GalleryPage from "./pages/galleryPage/GalleryPage";
 import MembershipPage from "./pages/membershipPage/MembershipPage";
 import PartnersPage from "./pages/partnersPage/PartnersPage";
 import ContactPage from "./pages/contactPage/ContactPage";
-import { Dashboard, Login, Signup, AdminRoute , PublicRoute } from "./components";
+import { Dashboard, Login, Signup, AdminRoute , PublicRoute , EventDetails} from "./components";
 import store from "./redux/store";
 
 import "./App.css";
@@ -33,6 +33,7 @@ const App = () => {
           <Route path="/president-message" element={<PresidentMessagePage />} />
           <Route path="/athletes" element={<AthletesPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/event-details/:eventId" element={<EventDetails />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/membership" element={<MembershipPage />} />
           <Route path="/partners" element={<PartnersPage />} />
