@@ -14,11 +14,13 @@
     margin: 30px 0;
     display: flex;
     justify-content: center;
+    
   }
   
   .club-logo img {
+    margin-left: 80%;
     width: 300px;
-    transition: transform 1.3s ease, 
+    transition: transform 1.3s ease,
   }
   
   .logo-hover:hover {

@@ -69,9 +69,7 @@ function Header() {
               <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
               <li><Link className='navlinks' to='/'>Adhésion</Link></li>
               <li><Link className='navlinks' to='/'>Blog </Link></li>
-              { (userRole === "ROLE_SUPER_ADMIN" || userRole === "ROLE_ADMIN") &&
               <li><Link className='navlinks' to='/dashboard'>Admin Dashboard</Link></li>
-              }
           </ul>
       </nav> 
       </div>

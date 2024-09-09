@@ -1,23 +1,47 @@
-/* src/pages/Dashboard.css */
-.dashboard {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .dashboard-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .dashboard-links a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 18px;
-  }
-  
-  .dashboard-links a:hover {
-    text-decoration: underline;
-  }
-  
+/* dashboard.css */
+
+/* General layout and background styling */
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 16px;
+}
+
+/* Ensuring the content area looks clean and has good spacing */
+.site-layout-background {
+  background: #001529;
+  color: #fff;
+}
+
+/* Making sure the content has padding and looks well-placed */
+.ant-layout-content {
+  background: #fff;
+  padding: 24px;
+  margin: 0;
+  min-height: 280px;
+}
+
+/* Adding some spacing between the edges of the content */
+.ant-layout {
+  padding: 0 24px;
+}
+
+/* Styling the menu inside the sider */
+.ant-menu-item {
+  font-size: 16px;
+}
+
+/* Changing color on menu item hover and active selection */
+.ant-menu-item:hover, .ant-menu-item-active {
+  background-color: #1890ff;
+}
+
+/* Styling the header for better readability */
+.ant-layout-header {
+  background: #fff;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

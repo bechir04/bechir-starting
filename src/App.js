@@ -14,7 +14,10 @@ import GalleryPage from "./pages/galleryPage/GalleryPage";
 import MembershipPage from "./pages/membershipPage/MembershipPage";
 import PartnersPage from "./pages/partnersPage/PartnersPage";
 import ContactPage from "./pages/contactPage/ContactPage";
-import { Dashboard, Login, Signup, AdminRoute , PublicRoute } from "./components";
+
+// Import your CRUD Dashboard
+import Dashboard from "./components/dashbord/Dashboard"; 
+import { Login, Signup, PublicRoute } from "./components";
 import store from "./redux/store";
 
 import "./App.css";
@@ -26,8 +29,11 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
+          {/* Auth-related routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
+          {/* Public Pages */}
           <Route path="/news" element={<NewsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/president-message" element={<PresidentMessagePage />} />
@@ -38,17 +44,15 @@ const App = () => {
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/contact" element={<ContactPage />} />
 
-          <Route path="/Dashboard" element={
-              <AdminRoute>
-                <Dashboard />
-              </AdminRoute>
-              }
-          />
+          {/* Dashboard and its nested routes */}
+          <Route path="/dashboard/*" element={<Dashboard />} />
+
+          {/* Home Page (Public Route) */}
           <Route path="/" element={
               <PublicRoute>
                 <HomePage />
               </PublicRoute>
-              }
+            }
           />
         </Routes>
         <Footer />
