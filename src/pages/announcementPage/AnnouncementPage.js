@@ -4,8 +4,8 @@ import {fetchAllAnnouncements} from "../../service/announcement/announcement";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Toolbar } from "../../components";
-import "./NewsPage.css";
-function NewsPage() {
+import "./announcementPage.css";
+function AnnouncementPage() {
 
   const [announcements, setAnnouncements] = useState([]);
   const [pageNumber , setPageNumber] = useState(1) ;
@@ -89,4 +89,4 @@ function NewsPage() {
 
 }
 
-export default NewsPage;
+export default AnnouncementPage;

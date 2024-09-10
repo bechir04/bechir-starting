@@ -4,7 +4,7 @@ import { notification, Button, Card } from "antd";
 import {getAllAthletes , getAthleteById} from "../../service/athlete/athlete";
 import { useNavigate } from 'react-router';
 import Toolbar from '../../components/toolbar/Toolbar';
-import './AthletesPage.css';
+import './AthletePage.css';
 
 const AthletePage = () => {
   const [athletes , setAthletes] = useState([]) ;

@@ -82,6 +82,11 @@
     color: #e0e0e0; /* Light text color */
     margin-bottom: 20px; /* Spacing between paragraph and content */
 }
+.club-logo {
+    width: 450px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    padding-right: 80px; /* Adjust padding as needed */
+  }
 
 /* Input Styles */
 .ant-form-item {
