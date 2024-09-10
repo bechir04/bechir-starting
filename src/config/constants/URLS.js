@@ -35,7 +35,13 @@ export const APIS ={
         fetchAllNotesByAthleteId : (athleteId)=> `/event_performance/athlete/${athleteId}`,
         updateNoteEventOfAthlete :(athleteId , eventId)=> `/event_performance/${athleteId}/${eventId}`,
         deleteEventPerformance :(athleteId , eventId)=> `/event_performance/${athleteId}/${eventId}`,
-
+    },
+    ATHLETE :{
+        getAthleteById : (athleteId) => `/athlete/${athleteId}`, 
+        getAllAthletes :(pageNumber , sortedBy)=> `/athlete?pageNumber=${pageNumber}&sortingColumn=${sortedBy}`,
+        getAllCustomAthletes : (checkedColumns)=> `/athlete/admin/custom?checkedColumns=${checkedColumns}`,
+        updateAthlete :(athleteId)=> `/athlete/admin/${athleteId}`,
+        deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`
     }
 
 }

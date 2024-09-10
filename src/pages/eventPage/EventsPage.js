@@ -47,9 +47,9 @@ function EventsPage() {
     const data = await fetchAllEvents(pageNumber ,sortedBy , selectedType) ;
     console.log("events in endpoint call: " , data);
     setEvents(data) ;
-  }catch(err){
-    console.log("error :", err)
-  }
+    }catch(err){
+      console.log("error from fetchAllEventsData :", err)
+    }
   }
   const handleSeeAllButtonClick =(eventId)=>{
     navigate(`/event-details/${eventId}`)
@@ -98,7 +98,7 @@ function EventsPage() {
               <h3>{event.title}</h3>
               <p>{event.date} - {event.location}</p>
               <p>{event.type}</p>
-              <Button type="primary" onClick={() => handleSeeAllButtonClick(event.id)}>Lire plus</Button>
+              <Button type="primary" onClick={() => handleSeeAllButtonClick(event.id)}>Lire plus</Button> 
             </Card>
         ))
       )

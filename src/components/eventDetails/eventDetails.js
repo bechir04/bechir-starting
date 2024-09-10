@@ -80,7 +80,6 @@ const EventDetails = () => {
   }
 
   useEffect(() => {
-    const currentAthlete = useSelector((state) => state.auth.user);
     fetchEventData(eventId);
     fetchAllAthleteNoteData(eventId);
     isAthleteRegisteredToEvent(eventId, currentAthlete.id);

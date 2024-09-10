@@ -73,7 +73,7 @@ function Header() {
                 <li><Link className='navlinks' to='/membership'>Adhésion</Link></li>
                 <li><Link className='navlinks' to='/blog'>Blog</Link></li>
                 {(userRole === "ROLE_SUPER_ADMIN" || userRole === "ROLE_ADMIN") && (
-                  <li><Link className='navlinks' to='/dashboard'>Admin Dashboard</Link></li>
+                  <li><Link className='navlinks' to='/dashboard/*'>Admin Dashboard</Link></li>
                 )}
               </>
             )}
