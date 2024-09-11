@@ -18,6 +18,11 @@ import ContactPage from "./pages/contactPage/ContactPage";
 // Import your CRUD Dashboard
 import Dashboard from "./components/dashbord/Dashboard"; 
 import { Login, Signup, PublicRoute } from "./components";
+
+// Import CRUD Pages
+import EventCRUD from "./components/crudPages/EventCRUD";
+import AnnouncementCRUD from "./components/crudPages/AnnouncementCRUD";
+
 import store from "./redux/store";
 
 import "./App.css";
@@ -46,6 +51,10 @@ const App = () => {
 
           {/* Dashboard and its nested routes */}
           <Route path="/dashboard/*" element={<Dashboard />} />
+
+          {/* CRUD Pages */}
+          <Route path="/event-crud" element={<EventCRUD />} />
+          <Route path="/announcement-crud" element={<AnnouncementCRUD />} />
 
           {/* Home Page (Public Route) */}
           <Route path="/" element={

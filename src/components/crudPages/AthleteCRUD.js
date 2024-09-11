@@ -1,41 +1,68 @@
 import React, { useState } from 'react';
-import './CRUD.css'; // Import the common CRUD styles
-
+import { useNavigate } from 'react-router-dom';
+import './AthleteCRUD.css'; // Import the Athlete-specific CSS
+import { Button, Input, Table, message } from 'antd';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 const AthleteCRUD = () => {
-  const [athletes, setAthletes] = useState([]);
-  const [name, setName] = useState("");
+  const [athletes, setAthletes] = useState([
+    { id: 1, name: "John Doe", image: "https://via.placeholder.com/60" },
+    { id: 2, name: "Jane Smith", image: "https://via.placeholder.com/60" },
+    { id: 3, name: "Alice Johnson", image: "https://via.placeholder.com/60" },
+  ]);
 
-  const addAthlete = () => {
-    const newAthlete = { id: athletes.length + 1, name };
-    setAthletes([...athletes, newAthlete]);
-    setName("");
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleView = (id) => {
+    navigate(`/athletes/${id}`); // Navigate to athlete details page
   };
 
-  const deleteAthlete = (id) => {
+  const handleDelete = (id) => {
     setAthletes(athletes.filter(athlete => athlete.id !== id));
+    message.success('Athlete deleted successfully!');
   };
+
+  const columns = [
+    {
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
+      render: (text) => <img src={text} alt="athlete" className="athlete-image" />,
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      render: (_, record) => (
+        <div>
+          <Button
+            icon={<EyeOutlined />}
+            onClick={() => handleView(record.id)}
+            style={{ marginRight: '8px' }}
+          />
+          <Button
+            icon={<DeleteOutlined />}
+            onClick={() => handleDelete(record.id)}
+            danger
+          />
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div>
+    <div className="crud-wrapper">
       <h2>Athlete Management</h2>
-      <div>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter athlete name"
-        />
-        <button onClick={addAthlete}>Add Athlete</button>
-      </div>
-      <ul>
-        {athletes.map(athlete => (
-          <li key={athlete.id}>
-            {athlete.name}
-            <button onClick={() => deleteAthlete(athlete.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <Table
+        columns={columns}
+        dataSource={athletes}
+        rowKey="id"
+        pagination={false}
+      />
     </div>
   );
 };

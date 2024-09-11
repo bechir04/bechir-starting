@@ -1,12 +1,13 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link, Route, Routes } from 'react-router-dom';
-import { UserOutlined, CalendarOutlined, PictureOutlined } from '@ant-design/icons';
+import { UserOutlined, CalendarOutlined, PictureOutlined, NotificationOutlined } from '@ant-design/icons';
 
 // Import your CRUD components
-import AthleteCRUD from '../crudPages/AthleteCRUD.js'; // Update path to your component
+import AthleteCRUD from '../crudPages/AthleteCRUD'; // Update path to your component
 import EventCRUD from '../crudPages/EventCRUD';     // Update path to your component
 import GalleryCRUD from '../crudPages/GalleryCRUD'; // Update path to your component
+import AnnouncementCRUD from '../crudPages/AnnouncementCRUD';
 
 const { Header, Sider, Content } = Layout;
 
@@ -25,6 +26,9 @@ const Dashboard = () => {
           <Menu.Item key="3" icon={<PictureOutlined />}>
             <Link to="/dashboard/gallery">Gallery</Link>
           </Menu.Item>
+          <Menu.Item key="4" icon={<NotificationOutlined />}>
+            <Link to="/dashboard/announcements">Announcements</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
 
@@ -35,6 +39,7 @@ const Dashboard = () => {
             <Route path="/athletes" element={<AthleteCRUD />} />
             <Route path="/events" element={<EventCRUD />} />
             <Route path="/gallery" element={<GalleryCRUD />} />
+            <Route path="/announcements" element={<AnnouncementCRUD />} />
           </Routes>
         </Content>
       </Layout>

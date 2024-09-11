@@ -1,41 +1,65 @@
 import React, { useState } from 'react';
-import './CRUD.css'; // Import the common CRUD styles
-
+import './GalleryCRUD.css'; // Import unique style for GalleryCRUD
 
 const GalleryCRUD = () => {
   const [images, setImages] = useState([]);
-  const [imageURL, setImageURL] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
-  const addImage = () => {
-    const newImage = { id: images.length + 1, url: imageURL };
-    setImages([...images, newImage]);
-    setImageURL("");
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const newImage = { id: images.length + 1, url: reader.result };
+        setImages([...images, newImage]);
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   const deleteImage = (id) => {
-    setImages(images.filter(image => image.id !== id));
+    setImages(images.filter((image) => image.id !== id));
   };
 
   return (
-    <div>
+    <div className="crud-wrapper">
       <h2>Gallery Management</h2>
-      <div>
+      <div className="crud-form">
         <input
-          type="text"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-          placeholder="Enter image URL"
+          type="file"
+          onChange={handleFileChange}
+          accept="image/*"
         />
-        <button onClick={addImage}>Add Image</button>
       </div>
-      <ul>
-        {images.map(image => (
-          <li key={image.id}>
-            <img src={image.url} alt="gallery" style={{ width: '100px' }} />
-            <button onClick={() => deleteImage(image.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+
+      {images.length > 0 ? (
+        <table className="crud-list">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {images.map((image) => (
+              <tr key={image.id} className="list-item">
+                <td>{image.id}</td>
+                <td>
+                  <img src={image.url} alt={`gallery-${image.id}`} />
+                </td>
+                <td>
+                  <button onClick={() => deleteImage(image.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="empty-list">No images uploaded yet.</div>
+      )}
     </div>
   );
 };
