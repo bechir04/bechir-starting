@@ -45,6 +45,7 @@ const tokenlessPaths = ["login", "register", "refresh"];
 Interceptor.interceptors.request.use(
   (config) => {
     console.log('Request config:', config);
+    
     store.dispatch(LoaderAction.toggleLoader(true)) ;
     const AUTH_TOKEN = localStorage.getItem("token");
     console.log('interceptor token passed : ', AUTH_TOKEN);
@@ -60,6 +61,15 @@ Interceptor.interceptors.request.use(
       }
     }
     console.log('Request headers:', config.headers);
+    if (config.data instanceof FormData) {
+      console.log('Request body (FormData entries):');
+      for (let [key, value] of config.data.entries()) {
+        console.log(`${key}:`, value);
+      }
+    } else {
+      console.log('Request body:', config.data);
+    }
+    
     return config;
   },
   (error) => {

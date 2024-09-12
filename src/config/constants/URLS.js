@@ -42,6 +42,12 @@ export const APIS ={
         getAllCustomAthletes : (checkedColumns)=> `/athlete/admin/custom?checkedColumns=${checkedColumns}`,
         updateAthlete :(athleteId)=> `/athlete/admin/${athleteId}`,
         deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`
+    },
+    FILE :{
+        uploadFile :  `/files/upload_file` , 
+        uploadMultipleFiles : `/files/upload_files` ,
+        downloadFile : (formData) => `/files/download_file?fileName=${encodeURIComponent(formData)}` ,
+        deleteFileById : (fielId) => `/files/${fielId}`
     }
 
 }

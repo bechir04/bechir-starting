@@ -1,44 +1,52 @@
 import React from 'react';
+import { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { Link, Route, Routes } from 'react-router-dom';
 import { UserOutlined, CalendarOutlined, PictureOutlined } from '@ant-design/icons';
 
-// Import your CRUD components
-import {AthleteManagement , EventManagement , GalleryManagement} from "../../components/adminDashboard/index"
+import {AthleteManagement , EventManagement , GalleryManagement , AnnouncementManagement} from "../../components/adminDashboard/index"
 
 const { Header, Sider, Content } = Layout;
 
 const DashboardPage = () => {
 
+  const [selectedNavItem , setSelectedNavItem] = useState(0);
   const menuItems = [
     {
       key: '1',
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/athletes">Athletes</Link>,
+      label: 'Athletes',
     },
     {
       key: '2',
       icon: <CalendarOutlined />,
-      label: <Link to="/dashboard/events">Events</Link>,
+      label: 'Events' ,
     },
     {
       key: '3',
       icon: <PictureOutlined />,
-      label: <Link to="/dashboard/gallery">Gallery</Link>,
+      label: 'Gallery',
     },
     {
       key: '4',
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/announcements">Announcements</Link>,
+      label: 'Announcements',
     }
   ];
+
+  const content  = [<AthleteManagement/>  , <EventManagement /> ,<GalleryManagement /> ,<AnnouncementManagement/>]
 
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider>
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+        <Menu theme="dark" 
+              mode="inline" 
+              items={menuItems} 
+              defaultSelectedKeys={['1']}
+              selectedKeys={[String(selectedNavItem + 1)]}
+              onSelect={({ key }) => setSelectedNavItem(parseInt(key, 10) - 1)}
+        />
       </Sider>
 
       <Layout>
@@ -47,11 +55,7 @@ const DashboardPage = () => {
         </Header>
         
         <Content style={{ margin: '16px', padding: '24px', background: '#fff' }}>
-          <Routes>
-            <Route path="/athletes" element={<AthleteManagement />} />
-            <Route path="/events" element={<EventManagement />} />
-            <Route path="/gallery" element={<GalleryManagement />} />
-          </Routes>
+          {content[selectedNavItem]}
         </Content>
       </Layout>
     </Layout>
