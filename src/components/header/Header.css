@@ -1,168 +1,103 @@
-  *{
-    box-sizing: border-box;
-  }
-.header{
-  position: sticky;
-  top: 0;
-  background-color: #342e28;
-  color: white;
-  width: 100%;
+/* General header styling */
+.header {
+  background-color: #001529; /* Dark header background */
+  color: #fff;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Align items to edges */
   align-items: center;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  box-sizing: border-box;
-  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.header{
-  color: chocolate;
-}
-.header-right{
+/* Header left section */
+.header-left {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  position: relative; 
-  
 }
 
-.btn {
-  background-color: chocolate; 
-  border: none; 
-  color: white; 
-  padding: 12px 24px;
-
-  font-size: 16px; 
-  font-weight: bold; 
-  cursor: pointer; 
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-
+/* Header right section */
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
-/* login button */
-.btn:hover {
-  background-color: chocolate;
-  transform: scale(1.05); 
+/* Styling for the login button */
+.btn-login {
+  margin-left: auto; /* Push the button to the right edge */
 }
 
-.btn:active {
-  background-color: #3e8e41; 
-  transform: scale(0.98); 
-}
-
-/* menu button */
-
+/* Styling for the menu button and icon */
 .menu-button {
-  background-color: transparent;
+  background: transparent;
   border: none;
-  width: 48px;
-  height: 48px;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+}
+
+/* Styling for menu icon */
+.menu-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Navigation menu styling */
+.nav-menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  gap: 20px;
 }
 
-.menu-icon,
-.menu-icon:before,
-.menu-icon:after {
-  background-color: beige;
-  width: 40px;
-  height: 5px;
-  border-radius: 5px;
-  position: absolute;
-  transition: all 0.5s;
-}
-
-.menu-icon:before,
-.menu-icon:after {
-  content: "";
-}
-
-.menu-icon:before {
-  transform: translate(-20px, -12px);
-}
-
-.menu-icon:after {
-  transform: translate(-20px, 12px);
-}
-
-
-
-@keyframes showMenu {
-  80% {
-    transform: scaleY(1.2);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
-nav {
-  display: none;
-  transform-origin: top center;
-  animation: showMenu 0.5s ease-in-out forwards;
-  margin: 0;
-  padding: 0;
-  position: absolute; 
-  top: calc(100% + 0.5rem);
-  right: 0;
-  width: 100%;
-  background-color: #342e28;
-  padding: 0; 
-  margin: 0; 
-  box-sizing: border-box;
-
-}
-
-nav ul {
-  width: 100%;
-  list-style-type: none;
+.nav-menu ul {
   display: flex;
-  flex-flow: column nowrap;
-  padding: 0; 
-  margin: 0; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-
-nav li {
-  border-bottom: 1px solid white;
-  width: 100%;
-  margin: 0; 
-  padding: 0.5rem; 
-}
-nav .navlinks {
-  display: block;
-  text-align: center;
-  width: 80%;
-  margin: auto;
-  cursor: pointer;
-  color: chocolate;
-    font-weight: bold ;
-    text-decoration: none;
+.nav-menu li {
+  margin: 0;
 }
 
-nav a:hover,
-nav a:focus {
-    transform: scale(1.1,1.2);
-    transition: all 0.3s;
-    color: aliceblue;
-}
-:is(header:hover , header:focus) .menu-icon{
-    transform : rotate(720deg);
-    background-color: transparent;
-}
-:is(header:hover , header:focus) .menu-icon:before{
-    transform : translateX(-10px) rotate(-45deg);
-}
-:is(header:hover , header:focus) .menu-icon:after{
-    transform : translateX(-10px) rotate(45deg);
-
+.navlinks {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  transition: color 0.3s ease;
 }
 
+.navlinks:hover {
+  color: #1890ff;
+}
 
-:is(header:hover , header:focus) nav{
+/* Hide elements on mobile */
+@media (max-width: 768px) {
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-button {
     display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    background-color: #001529;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    width: 100%;
+  }
 }

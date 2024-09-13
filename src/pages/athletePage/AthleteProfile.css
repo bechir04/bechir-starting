@@ -1,0 +1,65 @@
+.athlete-profile-page {
+    padding: 40px 20px;
+  }
+  
+  .athlete-profile-page h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .athlete-profile-page img {
+    border-radius: 10px;
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  .athlete-profile-page p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .gallery {
+    margin-top: 40px;
+  }
+  
+  .gallery h3 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .gallery-item p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+  }
+  

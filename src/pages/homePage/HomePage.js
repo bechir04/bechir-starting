@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import { bechir, affiche, ppl, Starting, run, course } from "../../assets/index";
 import 'slick-carousel/slick/slick.css'; 
@@ -7,11 +6,21 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 function HomePage() {
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 100); // Adjust the scroll position as needed
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const clubImages = [
     { src: run, alt: 'Club Event 1' },
     { src: affiche, alt: 'Club Event 2' },
     { src: course, alt: 'Club Event 3' },
-
   ];
 
   const partners = [
@@ -22,17 +31,16 @@ function HomePage() {
 
   const settings = {
     dots: true,
-    infinite: true, // This ensures infinite scrolling
-    autoplay: true, // Enables automatic sliding
-    autoplaySpeed: 1, // 3 seconds for each slide
-    slidesToShow: 1, // Show one slide at a time
-    slidesToScroll: 1, // Scroll one slide at a time
-    speed: 10000, // Speed of the sliding transition
-    
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000, // 3 seconds for each slide
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000, // Speed of the sliding transition
   };
 
   return (
-    <div className="home-page">
+    <div className={`home-page ${scrolling ? 'scroll-blur blur' : 'scroll-blur'}`}>
       {/* Club Logo */}
       <div className="club-logo">
         <img src={Starting} alt="Club Logo" className="logo-hover" />
@@ -56,6 +64,42 @@ function HomePage() {
             </div>
           ))}
         </Slider>
+      </section>
+
+      {/* Quick Overview Section */}
+      <section className="quick-overview">
+        <h2>Aperçu Rapide</h2>
+        <div className="overview-cards">
+          {/* Latest News */}
+          <div className="overview-card">
+            <h3>Dernières Nouvelles</h3>
+            <ul>
+              <li>Championnat Régional: 10 septembre 2024</li>
+              <li>Nouvelle saison d'entraînement: Inscriptions ouvertes</li>
+              <li>Résultats des compétitions nationales</li>
+            </ul>
+          </div>
+
+          {/* Upcoming Events */}
+          <div className="overview-card">
+            <h3>Événements À Venir</h3>
+            <ul>
+              <li>Course sur route - 15 octobre 2024</li>
+              <li>Compétition junior - 25 octobre 2024</li>
+              <li>Marathon de Nabeul - 5 novembre 2024</li>
+            </ul>
+          </div>
+
+          {/* Important Messages */}
+          <div className="overview-card">
+            <h3>Messages Importants</h3>
+            <ul>
+              <li>Réunion du conseil: 1er septembre 2024</li>
+              <li>Rappel: Respect des mesures sanitaires</li>
+              <li>Nouvelle charte du club publiée</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       {/* Partners Section */}

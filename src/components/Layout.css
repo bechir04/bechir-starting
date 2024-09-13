@@ -1,0 +1,8 @@
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust height to center spinner vertically */
+    min-height: 400px; /* Ensures a minimum height */
+  }
+  
