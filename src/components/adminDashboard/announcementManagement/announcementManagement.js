@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, Table, Modal, Popconfirm, Typography } from 'antd';
+import { Button, Form, Input, Table, Modal, Popconfirm, Typography , notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
-import {fetchAllAnnouncements} from "../../../service/announcement/announcement";
+import {fetchAllAnnouncements , deleteAnnouncementById, updateAnnouncement, createAnnouncement} from "../../../service/announcement/announcement";
 
 import "./AnnouncementManagement.css"; 
 
@@ -10,10 +10,11 @@ const { Title } = Typography;
 
 const AnnouncementManagement = () => {
     const [announcements, setAnnouncements] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const [currentAnnouncement, setCurrentAnnouncement] = useState(null);
-    const [pageNumber ,setPageNumber] = useState(1);
+    const [pagination , setPagination] = useState({ current: 1, pageSize: 5, total: 0 }) ;
     const [sortedBy , setSortedBy] = useState('createdAt');
+    const [isEditing, setIsEditing] = useState(false);
+    const [isAdding, setIsAdding] = useState(false);
 
     
     const formatDate = (date) => {
@@ -26,42 +27,14 @@ const AnnouncementManagement = () => {
         });
     };
 
-    const handleAddAnnouncement = (values) => {
-        const now = new Date();
-        const newAnnouncement = {
-            id: announcements.length + 1,
-            title: values.title,
-            content: values.content,
-            createdAt: now,
-            updatedAt: now,
-            createdBY: { // Example user data; replace with actual user info
-                id: 1,
-                name: 'Admin User'
-            }
-        };
-
-        if (currentAnnouncement) {
-            newAnnouncement.id = currentAnnouncement.id;
-            newAnnouncement.updatedAt = now;
-            setAnnouncements(announcements.map(ann => ann.id === currentAnnouncement.id ? newAnnouncement : ann));
-        } else {
-            setAnnouncements([...announcements, newAnnouncement]);
-        }
-
-        setIsModalVisible(false);
-        setCurrentAnnouncement(null);
-    };
-
-    const handleEditAnnouncement = (record) => {
-        setCurrentAnnouncement(record);
-        setIsModalVisible(true);
-    };
-
-    const handleDeleteAnnouncement = (id) => {
-        setAnnouncements(announcements.filter(ann => ann.id !== id));
-    };
+    
 
     const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
         {
             title: 'Title',
             dataIndex: 'title',
@@ -88,7 +61,10 @@ const AnnouncementManagement = () => {
             title: 'Created By',
             dataIndex: 'createdBY',
             key: 'createdBY',
-            render: (text) => text.name, // Adjust based on user data structure
+            render: (_, record) =>{
+                const {createdBy} = record ;
+                return createdBy ? `${createdBy.firstname} ${createdBy.lastname}` : "unknown"
+            }, // Adjust based on user data structure
         },
         {
             title: 'Actions',
@@ -102,37 +78,144 @@ const AnnouncementManagement = () => {
                     />
                     <Popconfirm
                         title="Are you sure to delete this announcement?"
+                        placement="left"
                         onConfirm={() => handleDeleteAnnouncement(record.id)}
-                    >
+                        >
                         <Button icon={<DeleteOutlined />} danger />
                     </Popconfirm>
                 </div>
             ),
         }
     ];
+    const handleTableChange = (newPagination)=>{
+        setPagination(newPagination);
+    }
+
+
+    //Adding Announcement
+    const onOkAddModal = ()=> {
+        const jsonAnnouncement= {
+            title : currentAnnouncement.title,
+            content : currentAnnouncement.content
+        }
+        handleAddAnnouncement(jsonAnnouncement) ;
+    }
+
+    const handleAddAnnouncement = async (jsonAnnouncement) => {
+        try{
+            const response = await createAnnouncement(jsonAnnouncement)
+            console.log("response of handle Add Announcement :",response);
+            setAnnouncements([
+                ...announcements , 
+                {
+                    title : response.title,
+                    content : response.content
+                }
+            ]);
+            notification.success({
+                message: "Success",
+                description: "new announcement Added successfully",
+                placement: "topRight",
+              });
+            setIsAdding(false);
+
+        }catch(err){
+            console.log("error handle Add Announcement   : ", err);
+        }
+    };
+
+    //Editing Announcement
+    const handleEditAnnouncement = (record) => {
+       setCurrentAnnouncement({
+        id : record.id ,
+        title : record.title,
+        content : record.content,
+        createdAt : record.createdAt,
+        updatedAt : record.updatedAt,
+        createdBy : record.createdBy,
+    });
+    setIsEditing(true) ;
+    };
+
+    const onOkEditModal = ()=> {
+        const jsonAnnouncement= {
+            title : currentAnnouncement.title,
+            content : currentAnnouncement.content
+        }; 
+        handleUpdateAnnouncementData(currentAnnouncement.id , jsonAnnouncement) ;   
+    }
+
+    const handleUpdateAnnouncementData = async(announcementId , jsonAnnouncement)=> {
+        try{
+            const response = await updateAnnouncement(announcementId , jsonAnnouncement);
+            console.log("response of handleUpdateAnnouncementData :",response);
+            
+            setAnnouncements(announcements.map((item)=>
+                 item.id ===announcementId ?{
+                    ...item ,
+                    title : jsonAnnouncement.title,
+                    content :jsonAnnouncement.content 
+                 }: item
+            ));
+
+            notification.success({
+                message: "Success",
+                description: "announcement updated successfully",
+                placement: "topRight",
+              });
+              setIsEditing(false);
+
+        }catch(err){
+            console.log("error handleUpdateAnnouncementData   : ", err);
+        }
+    }
+
+    const handleDeleteAnnouncement = async (announcementId) => {
+    try{
+        const response = await deleteAnnouncementById(announcementId);
+        notification.success({
+          message: "Success",
+          description: response,
+          placement: "topRight", // or 'bottomRight'
+        });
+        setAnnouncements(announcements.filter((ann) => ann.id !== announcementId));
+    } catch (err) {
+        console.log("error delete announcement By Id  : ", err);
+    }
+    };
+
 
     const handleFetchAllAnnouncementData = async(pageNumber ,sortedBy) => {
       try  {
         const response = await fetchAllAnnouncements(pageNumber , sortedBy); 
         console.log("response of handleFetchAllAnnouncementData :",response);
         
-        setAnnouncements(response)
-      }catch(err){
+        setAnnouncements(response) //setting datasource
+        console.log("total:response.length : ",response.length);
+        setPagination({... pagination , total:response.length})
+    }catch(err){
         console.log("erro handle Fetch Al lAnnouncement Data :", err)
       }
     }
 
+    const onCancelModal = () => {
+        setIsAdding(false);
+        setIsEditing(false);
+        setCurrentAnnouncement(null);
+    }
+
     useEffect(()=> {
-      handleFetchAllAnnouncementData(pageNumber , sortedBy); 
-    },[pageNumber , sortedBy]);
+        console.log("pagination. current: ",pagination.current); 
+        handleFetchAllAnnouncementData(pagination.current , sortedBy); 
+    },[pagination.current , sortedBy]);
 
     return (
         <div className="crud-wrapper">
             <Title level={2}>Announcement Management</Title>
             <Button
                 type="primary"
-                onClick={() => setIsModalVisible(true)}
-                style={{ marginBottom: 16 }}
+                onClick={() => setIsAdding(true)}
+                style={{ marginBottom: 16, maxWidth: 200}}
             >
                 Add Announcement
             </Button>
@@ -140,21 +223,32 @@ const AnnouncementManagement = () => {
             <Table
                 dataSource={announcements}
                 columns={columns}
-                rowKey="id"
+                rowKey={(row) => row.id}
+                pagination={{pagination}}
+                onChange={(pagination)=> handleTableChange(pagination)}
             />
 
             <Modal
-                title={currentAnnouncement ? "Edit Announcement" : "Add Announcement"}
-                visible={isModalVisible}
-                onCancel={() => setIsModalVisible(false)}
-                footer={null}
+                title={isEditing ? "Edit announcement" : "Add announcement"}
+                open={isAdding || isEditing}
+                okText="Save"
+                cancelText="Cancel"
+                onOk={()=> {
+                    isAdding ?  onOkAddModal(): onOkEditModal(); 
+                }}
+                onCancel={() => onCancelModal()}
             >
                 <Form
                     initialValues={currentAnnouncement ? {
-                        title: currentAnnouncement.title,
-                        content: currentAnnouncement.content
+                        title: currentAnnouncement.title|| '',
+                        content: currentAnnouncement.content|| ''
                     } : {}}
-                    onFinish={handleAddAnnouncement}
+                    onValuesChange={(_, allValues) => {
+                        setCurrentAnnouncement((previousState) => ({
+                          ...previousState,
+                          ...allValues,
+                        }));
+                      }}
                 >
                     <Form.Item
                         name="title"
@@ -169,11 +263,6 @@ const AnnouncementManagement = () => {
                         rules={[{ required: true, message: 'Please input the announcement content!' }]}
                     >
                         <Input.TextArea />
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            {currentAnnouncement ? "Update Announcement" : "Add Announcement"}
-                        </Button>
                     </Form.Item>
                 </Form>
             </Modal>

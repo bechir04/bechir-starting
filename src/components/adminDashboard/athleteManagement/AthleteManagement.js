@@ -11,6 +11,7 @@ import {
   message,
   Upload
 } from "antd";
+import { useNavigate } from 'react-router-dom';
 
 import {
   getAllCustomAthletes,
@@ -37,6 +38,38 @@ const AthleteManagement = () => {
   const [file, setFile] = useState(null);
   const [previewImage, setPreviewImage] = useState('');
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [sortedBy, setSortedBy] = useState("id");
+  const [athletes, setAthletes] = useState([]);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [selectedColumns, setSelectedColumns] = useState([
+    "id",
+    "firstname",
+    "lastname",
+    "email",
+    "enable",
+    "createdAt",
+    "phoneNumber",
+    "licenceID",
+    "dateOfBirth",
+    "age",
+    "hasMedal",
+    "branch",
+  ]);
+  const [currentAthlete, setCurrentAthlete] = useState({
+    id: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    enable: null,
+    createdAt: '',
+    phoneNumber: '',
+    licenceID: '',
+    dateOfBirth: null,
+    hasMedal: null,
+    branch: '',
+  });
+  const navigate = useNavigate(); 
 
 
 
@@ -114,39 +147,6 @@ const handlePreview = async (file) => {
     }
   };
 
-
-  const [pageNumber, setPageNumber] = useState(1);
-  const [sortedBy, setSortedBy] = useState("id");
-  const [athletes, setAthletes] = useState([]);
-  const [selectedColumns, setSelectedColumns] = useState([
-    "id",
-    "firstname",
-    "lastname",
-    "email",
-    "enable",
-    "createdAt",
-    "phoneNumber",
-    "licenceID",
-    "dateOfBirth",
-    "age",
-    "hasMedal",
-    "branch",
-  ]);
-  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-  const [currentAthlete, setCurrentAthlete] = useState({
-    id: null,
-    firstname: null,
-    lastname: null,
-    email: null,
-    enable: null,
-    createdAt: null,
-    phoneNumber: null,
-    licenceID: null,
-    dateOfBirth: null,
-    hasMedal: null,
-    branch: null,
-  });
-
   const columns = [
     { label: "ID", value: "id" },
     { label: "First Name", value: "firstname" },
@@ -182,7 +182,9 @@ const handlePreview = async (file) => {
             onClick={() => handleViewDetails(record)}
           />
 
-          <Button icon={<EditOutlined />} onClick={() => handleEdit(record)} />
+          <Button icon={<EditOutlined />} 
+            onClick={() => handleEdit(record)} 
+          />
 
           <Popconfirm
             title="are sure you want to delete this athlete ?"
@@ -205,8 +207,13 @@ const handlePreview = async (file) => {
     },
   ];
 
-  const handleViewDetails = () => {};
+  // FETCH Athlete by ID Process
+  const handleViewDetails = (athlete) => {
+    navigate(`/admin/athlete-details/${athlete.id}`);
+  };
 
+
+  //DELETE Athlete Process
   const handleDelete = async (id) => {
     try {
       const response = await deleteAthleteById(id);
@@ -222,6 +229,7 @@ const handlePreview = async (file) => {
     }
   };
 
+  //EDIT Athlete Process
   const handleEdit = (record) => {
     setCurrentAthlete({
       id: record.id,
@@ -267,7 +275,7 @@ const handlePreview = async (file) => {
       });
       setAthletes(
         athletes.map((item) =>
-          item.key !== id
+          item.id === id
             ? {
                 ...item,
                 firstname: jsonAthlete.firstname,
@@ -308,6 +316,8 @@ const handlePreview = async (file) => {
       );
     }
   };
+
+  //FETCH ALL Athlete Process
   const fetchallCustomAthleteData = async (data) => {
     try {
       console.log("data :", data);
@@ -419,8 +429,12 @@ const handlePreview = async (file) => {
       </Modal>
 
       {/** file uploading */}
-      <Button type="primary" onClick={() => setIsUploadModalVisible(true)}>
-        Upload File
+      <Button 
+          type="primary" 
+          onClick={() => setIsUploadModalVisible(true)}
+          style={{ marginBottom: 16, maxWidth: 200}}
+      >
+      Upload File
       </Button>
 
       <Modal

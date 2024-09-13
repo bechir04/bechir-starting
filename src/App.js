@@ -10,6 +10,7 @@ import store from "./redux/store";
 import "./App.css";
 import { Provider } from "react-redux";
 import DashboardPage from "./pages/admin/DashboardPage";
+import AthleteDetails from "./components/adminDashboard/athleteManagement/athlete-details";
 
 const App = () => {
   return (
@@ -41,6 +42,8 @@ const App = () => {
               </AdminRoute>
               }
           />
+          <Route path="/admin/athlete-details/:athleteId" element={<AthleteDetails />} />
+
           {/* route for non authenticated users */}
           <Route path="/" element={
               <PublicRoute>

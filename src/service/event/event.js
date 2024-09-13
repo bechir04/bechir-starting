@@ -29,13 +29,14 @@ export const updateEvent = (id ,data) =>{
     return fetch({
         method : "put" ,
         url : BaseUrl+APIS.EVENT.updateEvent(id) ,
-        data
+        data ,
+        headers: { "Content-Type": "application/json" }
     });
 }
 
 export const deleteEventById = (id) =>{
     return fetch({
         method : "delete" ,
-        url : BaseUrl+APIS.ANNOUNCEMENT.deleteEventById(id) ,
+        url : BaseUrl+APIS.EVENT.deleteEventById(id) ,
     });
 }

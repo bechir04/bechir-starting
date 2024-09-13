@@ -48,6 +48,12 @@ export const APIS ={
         uploadMultipleFiles : `/files/upload_files` ,
         downloadFile : (formData) => `/files/download_file?fileName=${encodeURIComponent(formData)}` ,
         deleteFileById : (fielId) => `/files/${fielId}`
+    } ,
+    PERFORMANCE: {
+        createPerformance:(athleteId) =>`/performance/${athleteId}` ,
+        updatePerformance:(performanceId) =>`/performance/${performanceId}`  ,
+        getPerformanceByAthleteId: (athleteId) =>`/performance/${athleteId}`,
+        deletePerformanceById: (performanceId) =>`/performance/${performanceId}`,
     }
 
 }
