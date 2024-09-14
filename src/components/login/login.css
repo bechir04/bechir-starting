@@ -1,25 +1,25 @@
 /* General Styles */
 
 .auth-title {
-    font-family: 'Bebas Neue', sans-serif; /* A bold, sporty font */
-    font-size: 3em; /* Larger font size for emphasis */
-    letter-spacing: 2px; /* Spacing between letters for a bold effect */
-    text-transform: uppercase; /* Uppercase letters for impact */
-    color: #ffffff; /* White text for contrast */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 3em; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    color: #ffffff; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
     margin-bottom: 20px;
 }
 
 .sports-paragraph {
-    font-family: 'Roboto', sans-serif; /* Consistent with subtitle */
+    font-family: 'Roboto', sans-serif; 
     font-size: 1em;
-    line-height: 1.6; /* Improved readability */
-    color: #e0e0e0; /* Light text color */
+    line-height: 1.6; 
+    color: #e0e0e0; 
     margin-bottom: 20px;
 }
 
 .sports-btn {
-    font-family: 'Bebas Neue', sans-serif; /* Same bold font for consistency */
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2em;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -42,46 +42,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     padding: 20px;
-    background: linear-gradient(to right, #1bdf01, #ea610c); /* Gradient background for login page */
+    background: linear-gradient(to right, #1bdf01, #ea610c); 
 }
 
 .auth-description, .auth-content {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.1); 
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
     width: 100%;
-    max-width: 400px; /* Maximum width */
+    max-width: 400px; 
     text-align: center;
 }
 
 /* Title Styles */
 .auth-description .ant-typography-title,
 .auth-content .ant-typography-title {
-    font-size: 2.5em; /* Larger title */
+    font-size: 2.5em; 
     margin-bottom: 20px;
-    color: #ffffff; /* Title color */
+    color: #ffffff; 
 }
 
 /* Paragraph Styles */
 .auth-description .ant-typography-paragraph,
 .auth-content .ant-typography-paragraph {
     font-size: 1.1em;
-    color: #e0e0e0; /* Light text color */
-    margin-bottom: 20px; /* Spacing between paragraph and content */
+    color: #e0e0e0; 
+    margin-bottom: 20px; 
 }
 
 .club-logo {
-    width: 450px; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-    padding-right: 80px; /* Adjust padding as needed */
+    width: 450px;
+    height: auto;
+    padding-right: 80px; 
 }
 
 /* Input Styles */
 .ant-form-item {
-    margin-bottom: 20px; /* Spacing between inputs */
+    margin-bottom: 20px; 
 }
 
 label {
@@ -100,8 +100,8 @@ label {
 }
 
 .ant-input:focus, .ant-input-password:focus {
-    box-shadow: 0 0 5px rgba(183, 178, 160, 0.5); /* Highlight on focus */
-    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(183, 178, 160, 0.5); 
+    outline: none; 
 }
 
 /* Button Styles */
@@ -113,13 +113,13 @@ label {
 }
 
 .ant-btn-primary {
-    background-color: #ff7300; /* Primary button background color */
+    background-color: #ff7300; 
     border: none; /* Remove border */
-    font-weight: bold; /* Make button text bold */
+    font-weight: bold; 
 }
 
 .ant-btn-primary:hover {
-    background-color: #00a2cc; /* Darker shade on hover */
+    background-color: #00a2cc; 
 }
 
 /* Responsive Styles */
@@ -131,28 +131,28 @@ label {
 
     .auth-description {
         margin-bottom: 20px;
-        margin-right: 0; /* Remove right margin when stacked */
+        margin-right: 0; 
     }
 
     .auth-content {
         margin-bottom: 20px;
-        padding: 20px; /* Adjust padding for smaller screens */
+        padding: 20px; 
     }
 
     .auth-description .ant-typography-title,
     .auth-content .ant-typography-title {
-        font-size: 2em; /* Adjust title size */
+        font-size: 2em; 
     }
     
     .sports-title {
-        font-size: 2.5em; /* Adjust title size for smaller screens */
+        font-size: 2.5em; 
     }
 
     .sports-paragraph {
-        font-size: 1em; /* Adjust paragraph size */
+        font-size: 1em;
     }
 
     .sports-btn {
-        font-size: 1em; /* Adjust button text size */
+        font-size: 1em; 
     }
 }

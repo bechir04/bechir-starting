@@ -17,6 +17,7 @@ import GalleryPage from './pages/galleryPage/GalleryPage';
 import MembershipPage from './pages/membershipPage/MembershipPage';
 import PartnersPage from './pages/partnersPage/PartnersPage';
 import ContactPage from './pages/contactPage/ContactPage';
+import Blog from './pages/Blog/Blog';
 
 // Import your CRUD Dashboard
 import Dashboard from './components/dashbord/Dashboard'; 
@@ -64,6 +65,7 @@ const App = () => {
               <Route path="/membership" element={<MembershipPage />} />
               <Route path="/partners" element={<PartnersPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/Blog" element={<Blog/>} />
 
               {/* Dashboard and its nested routes */}
               <Route path="/dashboard/*" element={<Dashboard />} />

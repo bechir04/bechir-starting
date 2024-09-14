@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
     setLoading(true); // Start loading when location changes
     const timer = setTimeout(() => {
       setLoading(false); // Stop loading after 1 second
-    }, 1000);
+    }, );
 
     return () => clearTimeout(timer); // Cleanup timer when navigating
   }, [location]);

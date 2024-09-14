@@ -1,0 +1,27 @@
+.blog-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .blog-content {
+    margin-bottom: 40px;
+    padding-top: 20px;
+  }
+  
+  .blog-content h2 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .blog-content p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .comments-section {
+    margin-top: 50px;
+  }
+  

@@ -11,7 +11,7 @@ function Header() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  
+
   return (
     <header className="header">
       <div className="header-left">
@@ -36,6 +36,7 @@ function Header() {
           <li><Link className='navlinks' to='/athletes'>Athlètes</Link></li>
           <li><Link className='navlinks' to='/events'>Événements</Link></li>
           <li><Link className='navlinks' to='/gallery'>Galerie</Link></li>
+          <li><Link className='navlinks' to='/Blog'>Blog</Link></li>
           <li><Link className='navlinks' to='/dashboard'>Dashboard</Link></li>
         </ul>
       </nav>
