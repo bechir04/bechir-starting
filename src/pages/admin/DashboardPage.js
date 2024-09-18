@@ -1,15 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu ,Avatar  , Typography } from 'antd';
 import { UserOutlined, CalendarOutlined, PictureOutlined } from '@ant-design/icons';
 
 import {AthleteManagement , EventManagement , GalleryManagement , AnnouncementManagement} from "../../components/adminDashboard/index"
+import { useSelector } from 'react-redux';
+import "./DashboardPage.css";
+
 
 const { Header, Sider, Content } = Layout;
+const {Title} = Typography ;
+
 
 const DashboardPage = () => {
 
   const [selectedNavItem , setSelectedNavItem] = useState(0);
+  const currentUser = useSelector(state => state.auth?.user);
   const menuItems = [
     {
       key: '1',
@@ -39,7 +45,17 @@ const DashboardPage = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider>
-        <div className="logo" />
+        <div className="user-profile">
+          <Avatar size={64} icon={<UserOutlined />} />
+          <div className="user-info">
+            <Title level={5}
+             style={{ color: 'white', margin: 0 }}
+             >
+              {currentUser.firstname ?currentUser.firstname : "Unknown"} {currentUser.lastname ?currentUser.lastname : "Unknown"}
+              </Title>
+            <p style={{ color: '#d0d0d0', margin: 0 }}>Administrator</p>
+          </div>
+        </div>
         <Menu theme="dark" 
               mode="inline" 
               items={menuItems} 

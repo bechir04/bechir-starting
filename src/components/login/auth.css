@@ -1,6 +1,6 @@
-
-/* General Styles */
-
+body {
+    overflow: hidden; 
+}
 .auth-title {
     font-family: 'Bebas Neue', sans-serif; /* A bold, sporty font */
     font-size: 3em; /* Larger font size for emphasis */
@@ -18,6 +18,7 @@
     color: #e0e0e0; /* Light text color */
     margin-bottom: 20px;
 }
+
 .sports-btn {
     font-family: 'Bebas Neue', sans-serif; /* Same bold font for consistency */
     font-size: 1.2em;
@@ -32,6 +33,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .sports-btn:hover {
     background-color: #00a2cc; 
     transform: translateY(-2px);
@@ -44,21 +46,9 @@
     height: 100vh; /* Full viewport height */
     padding: 20px;
     background: linear-gradient(to right, #1bdf01, #ea610c); /* Gradient background for login page */
-
 }
 
-.auth-description {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    width: 100%;
-    max-width: 400px; /* Maximum width */
-    margin-right: 20px;
-    text-align: center;
-}
-
-.auth-content {
+.auth-description, .auth-content {
     background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
     border-radius: 10px;
     padding: 40px;
@@ -77,16 +67,18 @@
 }
 
 /* Paragraph Styles */
-.auth-description .ant-typography-paragraph {
+.auth-description .ant-typography-paragraph,
+.auth-content .ant-typography-paragraph {
     font-size: 1.1em;
     color: #e0e0e0; /* Light text color */
     margin-bottom: 20px; /* Spacing between paragraph and content */
 }
+
 .club-logo {
     width: 450px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     padding-right: 80px; /* Adjust padding as needed */
-  }
+}
 
 /* Input Styles */
 .ant-form-item {
@@ -105,6 +97,7 @@ label {
     padding: 10px;
     border: none; /* Remove default border */
     transition: all 0.3s ease; /* Smooth transition */
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
 }
 
 .ant-input:focus, .ant-input-password:focus {
@@ -123,10 +116,17 @@ label {
 .ant-btn-primary {
     background-color: #ff7300; /* Primary button background color */
     border: none; /* Remove border */
+    font-weight: bold; /* Make button text bold */
 }
 
 .ant-btn-primary:hover {
     background-color: #00a2cc; /* Darker shade on hover */
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
 }
 
 /* Responsive Styles */
@@ -150,12 +150,13 @@ label {
     .auth-content .ant-typography-title {
         font-size: 2em; /* Adjust title size */
     }
+    
     .sports-title {
         font-size: 2.5em; /* Adjust title size for smaller screens */
     }
 
-    .sports-subtitle {
-        font-size: 1.2em; /* Adjust subtitle size */
+    .sports-paragraph {
+        font-size: 1em; /* Adjust paragraph size */
     }
 
     .sports-btn {

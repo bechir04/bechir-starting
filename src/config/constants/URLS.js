@@ -44,8 +44,8 @@ export const APIS ={
         deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`
     },
     FILE :{
-        uploadFile :  `/files/upload_file` , 
-        uploadMultipleFiles : `/files/upload_files` ,
+        uploadFile :  '/files/upload_file' , 
+        uploadMultipleFiles : '/files/upload_files' ,
         downloadFile : (formData) => `/files/download_file?fileName=${encodeURIComponent(formData)}` ,
         deleteFileById : (fielId) => `/files/${fielId}`
     } ,

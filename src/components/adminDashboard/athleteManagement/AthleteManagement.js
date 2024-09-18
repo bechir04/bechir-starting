@@ -18,7 +18,7 @@ import {
   updateAthlete,
   deleteAthleteById,
 } from "../../../service/athlete/athlete";
-import { uploadFile } from "../../../service/file/file";
+import { uploadFile } from "../../../service/file/file.js";
 
 import "./athleteManagement.css";
 
@@ -35,9 +35,10 @@ const getBase64 = (file) =>
 
 const AthleteManagement = () => {
   const [isUploadModalVisible, setIsUploadModalVisible] = useState(false);
-  const [file, setFile] = useState(null);
-  const [previewImage, setPreviewImage] = useState('');
+  const [file, setFile] = useState([]);
+  const [previewImage, setPreviewImage] = useState(null);
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [isUploadingFile , setIsUploadingFile] = useState(false) ;
   const [pageNumber, setPageNumber] = useState(1);
   const [sortedBy, setSortedBy] = useState("id");
   const [athletes, setAthletes] = useState([]);
@@ -69,6 +70,7 @@ const AthleteManagement = () => {
     hasMedal: null,
     branch: '',
   });
+  var filetest = null;
   const navigate = useNavigate(); 
 
 
@@ -85,9 +87,8 @@ const AthleteManagement = () => {
     }
   };
 
-  const handleUploadChange = ({ file }) => {
-    setFile(file);
-};
+
+
 
   const onBeforeUpload = (file) => {
     if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
@@ -96,55 +97,41 @@ const AthleteManagement = () => {
     return file.type === 'image/png' || file.type === 'image/jpeg' ? false : Upload.LIST_IGNORE;
 }
 
-const handlePreview = async (file) => {
-  if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-  }
-  setPreviewImage(file.url || file.preview);
-  setPreviewVisible(true);
-};
-
-  const logFormData = (formData) => {
-    // Create an iterator for FormData entries
-    for (let [key, value] of formData.entries()) {
-      if (value instanceof File) {
-        console.log(`${key}: File(${value.name}, ${value.size} bytes)`);
-      } else {
-        console.log(`${key}: ${value}`);
-      }
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
     }
+    setPreviewImage(file.url || file.preview);
+    setPreviewVisible(true);
   };
   
+  const handleUploadChange = (event) => {
+    const fileList = event.target.files[0]; 
+ 
+    
+      setFile(fileList); 
+      console.log("fileList : ",fileList);
+      setPreviewImage(URL.createObjectURL(fileList)); // Create a preview URL
+    
+  };
 
-  const handleUploadFile = async () => {
-    if (!file) {
-      notification.error({
-        message: 'Please select a file to upload',
-      });
-      return;
-    }
+  const onCancelUploadModal = ()=>  {
+    setIsUploadingFile(false);
+    setFile(null);
+    setPreviewImage(null);
+  }
 
-    const formData = new FormData();
-    formData.append('file', file);
-    logFormData(formData);
+  const handleUploadFile =  async () => {
+    console.log("file from handleUploadFile",file);
+    const formatData = new FormData();
+    formatData.append("uploadFile" , file)
 
-    try {
-      const response = await uploadFile(formData);
-      console.log("response from handleUploadFile" , response);
-      
-      if (response.ok) {
-        notification.success({
-          message: 'File uploaded successfully',
-        });
-        setIsUploadModalVisible(false);
-      } else {
-        throw new Error('Upload failed');
-      }
-    } catch (error) {
-      notification.error({
-        message: 'File upload failed',
-      });
-    }
+    const res = await uploadFile(formatData);
+    console.log("response from uploadFile :", res);
+
+    setFile(null);
+    setPreviewImage(null);
+    
   };
 
   const columns = [
@@ -431,7 +418,7 @@ const handlePreview = async (file) => {
       {/** file uploading */}
       <Button 
           type="primary" 
-          onClick={() => setIsUploadModalVisible(true)}
+          onClick={() => setIsUploadingFile(true)}
           style={{ marginBottom: 16, maxWidth: 200}}
       >
       Upload File
@@ -439,19 +426,23 @@ const handlePreview = async (file) => {
 
       <Modal
         title="Upload File"
-        visible={isUploadModalVisible}
-        onCancel={() => setIsUploadModalVisible(false)}
+        open={isUploadingFile}
+        onCancel={onCancelUploadModal}
         onOk={handleUploadFile}
       >
-        <Upload
-          maxCount={1}
-          onPreview={handlePreview}
+        <Input
+          type="file"
           onChange={handleUploadChange}
-          beforeUpload={(file) => onBeforeUpload(file)}
-
-         >
-          <Button>Select File</Button>
-        </Upload>
+        />
+        {previewImage && (
+          <div style={{ marginTop: '10px' }}>
+            <img
+              src={previewImage}
+              alt="image Preview"
+              style={{ maxWidth: '100%', maxHeight: '200px' }}
+            />
+          </div>
+        )}
       </Modal>
     </>
   );

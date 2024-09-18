@@ -48,9 +48,7 @@ Interceptor.interceptors.request.use(
     
     store.dispatch(LoaderAction.toggleLoader(true)) ;
     const AUTH_TOKEN = localStorage.getItem("token");
-    console.log('interceptor token passed : ', AUTH_TOKEN);
-    const isTokenRequest = tokenlessPaths.some((path) =>config.url.includes(path)
-    ); //true if tokenless path exist
+    const isTokenRequest = tokenlessPaths.some((path) =>config.url.includes(path));
 
     if (!isTokenRequest) {
       const jwtToken = AUTH_TOKEN || null;
@@ -61,15 +59,6 @@ Interceptor.interceptors.request.use(
       }
     }
     console.log('Request headers:', config.headers);
-    if (config.data instanceof FormData) {
-      console.log('Request body (FormData entries):');
-      for (let [key, value] of config.data.entries()) {
-        console.log(`${key}:`, value);
-      }
-    } else {
-      console.log('Request body:', config.data);
-    }
-    
     return config;
   },
   (error) => {
@@ -97,7 +86,7 @@ Interceptor.interceptors.response.use(
 
     const status = error.response ? error.response.status : "500";
     notif.message = statusMessages[status] || "unknown error";
-    notif.description = error.response.errors;
+    //notif.description = error.response.errors;
     console.log("status error :",status);
   
     //if token is expired

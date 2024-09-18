@@ -3,13 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import React from "react";
 import { registerService } from "../../service/auth/Auth";
-import '../login/login.css'; // Include this in your app for Ant Design styles
+import '../login/auth.css'; // Include this in your app for Ant Design styles
 import {Starting} from "../../assets/index";
 
 const { Option } = Select;
 
 const Signup = () => {
-  const Navigate = useNavigate();
   const [signupData, setSignupData] = useState({
     firstname: "",
     lastname: "",
@@ -21,12 +20,7 @@ const Signup = () => {
     branch: "",
   });
 
-  const validateConfirmPassword = (rule, ConfirmPassword) => {
-    if (ConfirmPassword !== signupData.password) {
-      return Promise.reject('Confirm password does not match the password');
-    }
-    return Promise.resolve();
-  };
+
 
   const handledataChange = (e) => {
     const { name, value } = e.target;
@@ -88,10 +82,10 @@ const Signup = () => {
           </Form.Item>
 
           <Form.Item
-            name="confirmPassword"
-            rules={[{ required: true, message: 'Please confirm your password' }, { validator: validateConfirmPassword }]}
+            name="licenceID"
+            rules={[{ required: true, message: "licenceID is required" }]}
           >
-            <Input.Password placeholder="Confirm Password" />
+            <Input.Password name="licenceID" placeholder="licenceID" value={signupData.licenceID} onChange={handledataChange} />
           </Form.Item>
 
           <Form.Item

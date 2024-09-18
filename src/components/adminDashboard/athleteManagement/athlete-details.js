@@ -12,11 +12,8 @@ import {
     Typography,
     notification,
   } from "antd";
-import { createPerformance } from "../../../service/perfromance/performance";
+import { createPerformance, getPerformanceByAthleteId } from "../../../service/perfromance/performance";
 import { getAthleteById } from "../../../service/athlete/athlete";
-import { all } from "axios";
-
-
 
 const AthleteDetails = ()=> {
 
@@ -24,6 +21,7 @@ const AthleteDetails = ()=> {
     
     const [athlete , setAthlete] = useState({});
     const [isAddingPerformance , setIsAddingPerformance] = useState(false);
+    const [isPerformanceExists , setIsPerformanceExists] = useState(false) ;
     const [performance , setPerformance] = useState({
         federationNote : '',
         createdAT : null ,
@@ -31,7 +29,7 @@ const AthleteDetails = ()=> {
         createdBy: null,
         updatedBy: null,
     });
-    const [isPerformanceExists , setIsPerformanceExists] = useState(false) ;
+    
 
 
     //Get Athlete  By Id
@@ -45,7 +43,7 @@ const AthleteDetails = ()=> {
         }
     }
     
-    //Add performance function
+    //Addperformance Process
     const onOKAddModal = ()=> {
         const jsonPerformance = {
             federationNote : performance.federationNote
@@ -60,8 +58,28 @@ const AthleteDetails = ()=> {
             console.log("response of create Performance :", response);
             setPerformance(response) ;
             setIsAddingPerformance(false);
+            setIsPerformanceExists(true)
         }catch(err){
             console.log("error of create Performance : ", err);
+        }
+    }
+
+    //Get performanceById Process
+    const getPerformanceByAthleteIdData = async(athleteId)=> {
+        try{
+            const response = await getPerformanceByAthleteId(athleteId);
+            console.log("getPerformanceByAthleteIdData response ", response);
+            response ? setIsPerformanceExists(true) : setIsPerformanceExists(false) ;
+            setPerformance({
+                federationNote : response.federationNote,
+                createdAT : response.createdAT ,
+                updatedAT: response.updatedAT,
+                createdBy: response.createdBy,
+                updatedBy: response.updatedBy,
+            });
+        }catch(err){
+            console.log("getPerformanceByAthleteIdData error ", err);
+            
         }
     }
 
@@ -79,6 +97,7 @@ const AthleteDetails = ()=> {
     // useEffect
     useEffect(()=> {
         getAthleteByIdData(athleteId);
+        getPerformanceByAthleteIdData(athleteId) ;
     }, [athleteId])
 
     return (
@@ -101,7 +120,7 @@ const AthleteDetails = ()=> {
           )}
 
           {isPerformanceExists ? (
-            <></>
+            <><p> there is alrady performances</p></>
           ): (
             <>
                 <Button 

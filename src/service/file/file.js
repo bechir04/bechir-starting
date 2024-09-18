@@ -1,16 +1,20 @@
 import fetch from "../../config/interceptor/interceptor"
 import {BaseUrl,APIS} from "../../config/constants/URLS"
+import axios from "axios";
 
-
-export const uploadFile = (formData) => {
-    return fetch ({
-        method : 'post' ,
-        url : BaseUrl + APIS.FILE.uploadFile ,
-        body : formData,
-        //onUploadProgress : (ProgressEvent) => {console.log(ProgressEvent.progress*100)},
-        headers : {'Content-Type': 'multipart/form-data'}
-    });
-}
+export const uploadFile = async (formData) => {
+    try {
+      const response = await axios.post(BaseUrl + APIS.FILE.uploadFile, formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add token if needed
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      throw error;
+    }
+  };
 
 export const uploadMultipleFiles = (formData) => {
     return fetch ({
