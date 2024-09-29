@@ -11,18 +11,20 @@ import {
   Typography,
   notification,
 } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined , EyeOutlined } from "@ant-design/icons";
 import {
   fetchAllEvents,
   deleteEventById,
   createEvent ,
   updateEvent,
 } from "../../../service/event/event";
-import { json } from "react-router";
 import moment from "moment";
 import Title from "antd/es/typography/Title";
+import { useNavigate } from "react-router";
 
 const EventManagement = () => {
+  const navigate = useNavigate(); 
+  
   const [events, setEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState({
     id: null,
@@ -110,6 +112,10 @@ const EventManagement = () => {
       render: (_, record) => (
         <div>
           <Button
+            icon={<EyeOutlined />}
+            onClick={() => handleViewDetails(record)}
+          />
+          <Button
             icon={<EditOutlined />}
             style={{ marginRight: 8 }}
             onClick={() => handleEditEvent(record)}
@@ -125,6 +131,11 @@ const EventManagement = () => {
       ),
     },
   ];
+
+  const handleViewDetails = (event) => {
+    navigate(`/admin/event-details/${event.id}`);
+  };
+
 
   const formatDate = (date) => {
     return new Date(date).toLocaleString("en-US", {

@@ -1,7 +1,6 @@
 import { BaseUrl, APIS } from "../../config/constants/URLS";
 import fetch from "../../config/interceptor/interceptor";
 
-
 export const loginService= (data) => {
     return fetch({
         method : 'post',

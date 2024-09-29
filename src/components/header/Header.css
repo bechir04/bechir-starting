@@ -4,134 +4,58 @@
 .header{
   position: sticky;
   top: 0;
-  background-color: #342e28;
-  color: white;
+  background-color: #f5f5f5;
   width: 100%;
+  
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding-right: 1rem;
-  padding-left: 1rem;
+
+  color: #2B1D1B;
   box-sizing: border-box;
   z-index: 1000;
+  border-bottom: 0.01em solid black;
+  box-shadow: 0px 11px 51px -24px rgba(0,0,0,0.75) !important;
+  -webkit-box-shadow: 0px 11px 51px -24px rgba(0,0,0,0.75)!important;
+  -moz-box-shadow: 0px 11px 51px -24px rgba(0,0,0,0.75)!important;
+}
+.header-left{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1DA57A;
+
 }
 
-.header{
-  color: chocolate;
-}
 .header-right{
   display: flex;
   align-items: center;
-  gap: 1rem;
-  position: relative; 
-  
+  gap: 1.5rem;
 }
 
-.btn {
-  background-color: chocolate; 
-  border: none; 
-  color: white; 
-  padding: 12px 24px;
-
-  font-size: 16px; 
-  font-weight: bold; 
-  cursor: pointer; 
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-
-}
-
-/* login button */
-.btn:hover {
-  background-color: chocolate;
-  transform: scale(1.05); 
-}
-
-.btn:active {
-  background-color: #3e8e41; 
-  transform: scale(0.98); 
-}
-
-/* menu button */
-
-.menu-button {
-  background-color: transparent;
-  border: none;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.menu-icon,
-.menu-icon:before,
-.menu-icon:after {
-  background-color: beige;
-  width: 40px;
-  height: 5px;
-  border-radius: 5px;
-  position: absolute;
-  transition: all 0.5s;
-}
-
-.menu-icon:before,
-.menu-icon:after {
-  content: "";
-}
-
-.menu-icon:before {
-  transform: translate(-20px, -12px);
-}
-
-.menu-icon:after {
-  transform: translate(-20px, 12px);
-}
-
-
-
-@keyframes showMenu {
-  80% {
-    transform: scaleY(1.2);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
 
 nav {
-  display: none;
-  transform-origin: top center;
-  animation: showMenu 0.5s ease-in-out forwards;
-  margin: 0;
-  padding: 0;
-  position: absolute; 
-  top: calc(100% + 0.5rem);
-  right: 0;
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  background-color: #342e28;
-  padding: 0; 
-  margin: 0; 
-  box-sizing: border-box;
-
+  margin-right: 2rem;
 }
 
 nav ul {
   width: 100%;
   list-style-type: none;
+  
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   padding: 0; 
   margin: 0; 
 }
 
 
 nav li {
-  border-bottom: 1px solid white;
   width: 100%;
   margin: 0; 
   padding: 0.5rem; 
+  white-space: nowrap;
 }
 nav .navlinks {
   display: block;
@@ -139,30 +63,14 @@ nav .navlinks {
   width: 80%;
   margin: auto;
   cursor: pointer;
-  color: chocolate;
-    font-weight: bold ;
-    text-decoration: none;
+  color: var(--text-color) ;
+  font-weight : 500;
+  text-decoration: none;
 }
 
 nav a:hover,
-nav a:focus {
-    transform: scale(1.1,1.2);
-    transition: all 0.3s;
-    color: aliceblue;
-}
-:is(header:hover , header:focus) .menu-icon{
-    transform : rotate(720deg);
-    background-color: transparent;
-}
-:is(header:hover , header:focus) .menu-icon:before{
-    transform : translateX(-10px) rotate(-45deg);
-}
-:is(header:hover , header:focus) .menu-icon:after{
-    transform : translateX(-10px) rotate(45deg);
-
-}
-
-
-:is(header:hover , header:focus) nav{
-    display: block;
+nav a:focus
+nav a:active {
+    color: var(--btn-focus-text-color);
+    font-weight: 700  ;
 }

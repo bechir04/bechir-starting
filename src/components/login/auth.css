@@ -1,165 +1,85 @@
-body {
-    overflow: hidden; 
-}
-.auth-title {
-    font-family: 'Bebas Neue', sans-serif; /* A bold, sporty font */
-    font-size: 3em; /* Larger font size for emphasis */
-    letter-spacing: 2px; /* Spacing between letters for a bold effect */
-    text-transform: uppercase; /* Uppercase letters for impact */
-    color: #ffffff; /* White text for contrast */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for depth */
-    margin-bottom: 20px;
-}
 
-.sports-paragraph {
-    font-family: 'Roboto', sans-serif; /* Consistent with subtitle */
-    font-size: 1em;
-    line-height: 1.6; /* Improved readability */
-    color: #e0e0e0; /* Light text color */
-    margin-bottom: 20px;
-}
-
-.sports-btn {
-    font-family: 'Bebas Neue', sans-serif; /* Same bold font for consistency */
-    font-size: 1.2em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #ffffff; 
-    background-color: #ff7300; 
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.sports-btn:hover {
-    background-color: #00a2cc; 
-    transform: translateY(-2px);
-}
+/* Container styles */
 
 .auth-container {
+    
     display: flex;
+    gap: 4rem;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    padding: 20px;
-    background: linear-gradient(to right, #1bdf01, #ea610c); /* Gradient background for login page */
-}
+    flex-grow: 1;
 
-.auth-description, .auth-content {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
     width: 100%;
-    max-width: 400px; /* Maximum width */
-    text-align: center;
+    background-color: #f0f2f5;
+    overflow: hidden;
+
 }
 
-/* Title Styles */
-.auth-description .ant-typography-title,
-.auth-content .ant-typography-title {
-    font-size: 2.5em; /* Larger title */
-    margin-bottom: 20px;
-    color: #ffffff; /* Title color */
+/* Card styles */
+.auth-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
 }
 
-/* Paragraph Styles */
-.auth-description .ant-typography-paragraph,
-.auth-content .ant-typography-paragraph {
-    font-size: 1.1em;
-    color: #e0e0e0; /* Light text color */
-    margin-bottom: 20px; /* Spacing between paragraph and content */
+/* Typography customization */
+.auth-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #1890ff; /* Ant Design primary color */
+}
+
+/* Form input styling */
+.ant-input, .ant-select, .ant-picker {
+  height: 40px;
+  font-size: 14px;
+}
+
+.signup-form .ant-form-item {
+  margin-bottom: 16px;
+}
+
+/* Customize submit button */
+.submit-btn {
+  width: 100%;
+
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* Customize button hover effect */
+
+
+/* Welcome Section */
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .club-logo {
-    width: 450px; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-    padding-right: 80px; /* Adjust padding as needed */
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-/* Input Styles */
-.ant-form-item {
-    margin-bottom: 20px; /* Spacing between inputs */
+.welcome-text {
+  font-size: 28px;
+  color: #000;
+  text-align: center;
 }
-
-label {
-    display: block;
-    margin-bottom: 5px; /* Spacing between label and input */
-    font-weight: bold;
-    color: #e0e0e0; /* Label color */
+label{
+    font-weight:500;
 }
-
-.ant-input, .ant-input-password {
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px;
-    border: none; /* Remove default border */
-    transition: all 0.3s ease; /* Smooth transition */
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
-}
-
-.ant-input:focus, .ant-input-password:focus {
-    box-shadow: 0 0 5px rgba(183, 178, 160, 0.5); /* Highlight on focus */
-    outline: none; /* Remove outline */
-}
-
-/* Button Styles */
-.ant-btn {
-    border-radius: 5px; /* Rounded corners */
-    width: 100%; /* Full width */
-    padding: 10px;
-    transition: background-color 0.3s ease; /* Smooth color transition */
-}
-
-.ant-btn-primary {
-    background-color: #ff7300; /* Primary button background color */
-    border: none; /* Remove border */
-    font-weight: bold; /* Make button text bold */
-}
-
-.ant-btn-primary:hover {
-    background-color: #00a2cc; /* Darker shade on hover */
-}
-
 .button-container{
     display: flex;
-    flex-direction: row;
-    gap: 1em;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .auth-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .auth-description {
-        margin-bottom: 20px;
-        margin-right: 0; /* Remove right margin when stacked */
-    }
-
-    .auth-content {
-        margin-bottom: 20px;
-        padding: 20px; /* Adjust padding for smaller screens */
-    }
-
-    .auth-description .ant-typography-title,
-    .auth-content .ant-typography-title {
-        font-size: 2em; /* Adjust title size */
-    }
-    
-    .sports-title {
-        font-size: 2.5em; /* Adjust title size for smaller screens */
-    }
-
-    .sports-paragraph {
-        font-size: 1em; /* Adjust paragraph size */
-    }
-
-    .sports-btn {
-        font-size: 1em; /* Adjust button text size */
-    }
+    flex-direction: column;
 }

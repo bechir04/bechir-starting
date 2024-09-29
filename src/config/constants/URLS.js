@@ -41,12 +41,14 @@ export const APIS ={
         getAllAthletes :(pageNumber , sortedBy)=> `/athlete?pageNumber=${pageNumber}&sortingColumn=${sortedBy}`,
         getAllCustomAthletes : (checkedColumns)=> `/athlete/admin/custom?checkedColumns=${checkedColumns}`,
         updateAthlete :(athleteId)=> `/athlete/admin/${athleteId}`,
-        deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`
+        deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`,
+        ulploadFilesToAthlete : (athleteId)=> `/athlete/${athleteId}`,
     },
     FILE :{
         uploadFile :  '/files/upload_file' , 
         uploadMultipleFiles : '/files/upload_files' ,
-        downloadFile : (formData) => `/files/download_file?fileName=${encodeURIComponent(formData)}` ,
+        downloadFile : (fileName) => `/files/download_file?fileName=${encodeURIComponent(fileName)}` ,
+        getAllFilesByAthlete : (athleteId) => `/files/athlete/${athleteId}`,
         deleteFileById : (fielId) => `/files/${fielId}`
     } ,
     PERFORMANCE: {

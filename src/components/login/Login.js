@@ -1,4 +1,3 @@
-
 import { Form, Input, Button, Typography, notification } from 'antd';
 import { useState  , useEffect} from 'react';
 import { useNavigate } from 'react-router';
@@ -60,7 +59,7 @@ const Login = () => {
 
     return (
         <div className='auth-container'>
-            <div className='auth-content'>
+            <div className='auth-card'>
                 <Form method='POST' name='login-from' className='login-from' onFinish={handleLoginClick}>
                     <Typography.Title className='auth-title'>Login</Typography.Title>
 
@@ -76,7 +75,7 @@ const Login = () => {
                         <Input name="email" value={loginData.email} onChange={(e) => handleDataChange(e)} />
                     </Form.Item>
 
-                    <label>Password</label>
+                    <label>Password :</label>
                     <Form.Item
                         className='password'
                         name='password'

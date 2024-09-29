@@ -1,5 +1,6 @@
   import fetch from "../../config/interceptor/interceptor";
   import { BaseUrl, APIS } from "../../config/constants/URLS";
+  import axios from "axios";
 
   export const getAthleteById = (id) => {
     return fetch({
@@ -40,4 +41,18 @@
       url: BaseUrl + APIS.ATHLETE.deleteAthleteById(id) ,
       headers: { "Content-Type": "application/json" }
     });
+  };
+
+  export const ulploadFilesToAthlete = async(athleteId ,formData) => {
+    try {
+      const response = await axios.post(BaseUrl + APIS.ATHLETE.ulploadFilesToAthlete(athleteId), formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      throw error;
+    }
   };

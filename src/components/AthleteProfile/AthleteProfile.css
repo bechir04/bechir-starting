@@ -12,10 +12,10 @@
     margin: 40px auto;
   }
   
-  h2 {
+  .athlete-details-container > h2 {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #333;
+    color: #f39148;
     margin-bottom: 10px;
   }
   

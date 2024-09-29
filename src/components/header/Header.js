@@ -47,17 +47,10 @@ function Header() {
 
   return (
     <header className="header">
-      <h2 className="header-left"> Club d'Athltisme</h2>
+      <h2 className="header-left"> Club d'Athlétisme</h2>
       
       
       <div className="header-right">
-
-        <Button className="btn-login" onClick={isAuthenticated ? handleLogoutClick : handleLoginClick }>{isAuthenticated ?"Logout" : "Login"}</Button>
-        
-        <button className="menu-button" >
-          <div className="menu-icon"></div>
-        </button>
-        
         <nav>
           <ul>
             {!isAuthenticated ? (
@@ -79,6 +72,9 @@ function Header() {
             )}
           </ul>
         </nav> 
+        
+        <Button className="btn-login" type="primary" onClick={isAuthenticated ? handleLogoutClick : handleLoginClick }>{isAuthenticated ?"Logout" : "Login"}</Button>
+
       </div>
     </header>
   );

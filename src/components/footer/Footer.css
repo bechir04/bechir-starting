@@ -1,69 +1,41 @@
-.footer {
-  background-color: #342e28; 
-  color: #ffffff; 
-  padding: 8px; 
-  text-align: center; 
-  
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 16px;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-  
+
+
+.footer-links {
+  margin-bottom: 10px;  /* Spacing between links and the social media section */
+}
+
+.footer-links a {
+  text-decoration: none;  /* Remove underline from links */
+  margin: 0 10px;  /* Horizontal spacing between links */
+  font-size: 14px;  /* Font size for links */
+  transition: color 0.3s ease;  /* Smooth transition when hovering */
+}
+
+.footer-links a:hover {
+  color: #e0a80d;  /* Highlight link on hover */
+}
+
+.footer-social {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  justify-content: center;  /* Center the social icons */
+  gap: 15px;  /* Spacing between icons */
 }
 
-.footer span {
-  font-weight: 500;
-}
-
-.footer .social-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 15px; 
-}
-
-.footer .social-links li {
-  display: inline;
-}
-
-.footer .social-links a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 18px;
+.footer-social a {
+  font-size: 20px;  /* Larger size for icons */
   transition: color 0.3s ease;
 }
 
-.footer .social-links a:hover {
-  color: #e0a80d; 
+.footer-social a:hover {
+  color: #e0a80d;  /* Change color on hover */
 }
 
-.footer .social-links a::before {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  margin-right: 8px;
-  vertical-align: middle;
+.footer-text {
+  margin-top: 15px;  /* Space above the footer text */
+  font-size: 12px;
+    /* Lighter color for additional info */
 }
 
-.footer .social-links a[href*="facebook.com"]::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg');
-}
-
-.footer .social-links a[href*="instagram.com"]::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png');
-}
-
-.footer .social-links a img {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
+.footer-text span {
+  font-weight:700;  /* Highlight certain text */
 }

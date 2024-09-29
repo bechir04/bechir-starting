@@ -1,14 +1,16 @@
 import { useState , useEffect } from "react";
 import { useParams } from "react-router";
-import { getAthleteById } from "../../service/athlete/athlete";
-
+import { getAthleteById} from "../../service/athlete/athlete.js";
+import {getAllFilesByAthlete } from "../../service/file/file.js"
+import  FetchFiles  from "../fileHandle/fetchFiles.js"
 import "./athleteProfile.css"
 
 const AthleteProfile = ()=>{
 
     const {athleteId} = useParams() ;
     const [athlete , setAthlete] = useState({});
-
+    const [jsonFiles , setJonFiles]= useState(null) ;
+    const [imageUrlList, setImageUrlList] = useState([]); // State for the image URL
 
     const getAthleteByIdData= async (athleteId)=> {
         try{
@@ -21,8 +23,9 @@ const AthleteProfile = ()=>{
     }
 
     useEffect(()=> {
-        getAthleteByIdData(athleteId)
+        getAthleteByIdData(athleteId);
     },[athleteId])
+ 
     
     return (
         <div className="athlete-details-container">
@@ -38,7 +41,13 @@ const AthleteProfile = ()=>{
                 <p><strong>Joined On:</strong> {new Date(athlete.createdAt).toLocaleDateString()}</p>
                 <p><strong>Medals:</strong> {athlete.hasMedal ? "Yes" : "No"}</p>
               </div>
+
+              <FetchFiles 
+                getSpecificFiles={getAllFilesByAthlete}
+                id={athleteId}
+              />
             </>
+            
           ) : (
             <p>Athlete not found</p>
           )}

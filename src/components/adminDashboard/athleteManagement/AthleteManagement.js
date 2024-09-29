@@ -34,7 +34,6 @@ const getBase64 = (file) =>
 
 
 const AthleteManagement = () => {
-  const [isUploadModalVisible, setIsUploadModalVisible] = useState(false);
   const [file, setFile] = useState([]);
   const [previewImage, setPreviewImage] = useState(null);
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -70,10 +69,7 @@ const AthleteManagement = () => {
     hasMedal: null,
     branch: '',
   });
-  var filetest = null;
   const navigate = useNavigate(); 
-
-
 
   const handleFileChange = (info) => {
     if (info.file.status === 'done') {
@@ -86,9 +82,6 @@ const AthleteManagement = () => {
       });
     }
   };
-
-
-
 
   const onBeforeUpload = (file) => {
     if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
@@ -107,8 +100,6 @@ const AthleteManagement = () => {
   
   const handleUploadChange = (event) => {
     const fileList = event.target.files[0]; 
- 
-    
       setFile(fileList); 
       console.log("fileList : ",fileList);
       setPreviewImage(URL.createObjectURL(fileList)); // Create a preview URL
@@ -124,7 +115,7 @@ const AthleteManagement = () => {
   const handleUploadFile =  async () => {
     console.log("file from handleUploadFile",file);
     const formatData = new FormData();
-    formatData.append("uploadFile" , file)
+    formatData.append("file" , file)
 
     const res = await uploadFile(formatData);
     console.log("response from uploadFile :", res);
@@ -163,7 +154,7 @@ const AthleteManagement = () => {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <div>
+        <div className="icon-container">
           <Button
             icon={<EyeOutlined />}
             onClick={() => handleViewDetails(record)}
@@ -350,6 +341,7 @@ const AthleteManagement = () => {
             columns={tableColumns}
             rowKey={(row) => row.id}
             scroll={{ x: "max-content" }}
+            style={{borderRadius:"10px"}}
           />
         ) : (
           <p>there is no athletes yet !</p>
@@ -415,35 +407,6 @@ const AthleteManagement = () => {
         </Form>
       </Modal>
 
-      {/** file uploading */}
-      <Button 
-          type="primary" 
-          onClick={() => setIsUploadingFile(true)}
-          style={{ marginBottom: 16, maxWidth: 200}}
-      >
-      Upload File
-      </Button>
-
-      <Modal
-        title="Upload File"
-        open={isUploadingFile}
-        onCancel={onCancelUploadModal}
-        onOk={handleUploadFile}
-      >
-        <Input
-          type="file"
-          onChange={handleUploadChange}
-        />
-        {previewImage && (
-          <div style={{ marginTop: '10px' }}>
-            <img
-              src={previewImage}
-              alt="image Preview"
-              style={{ maxWidth: '100%', maxHeight: '200px' }}
-            />
-          </div>
-        )}
-      </Modal>
     </>
   );
 };
