@@ -106,6 +106,7 @@ function EventsPage() {
 
       }
     </div>
+    
     </div>
   );
 }

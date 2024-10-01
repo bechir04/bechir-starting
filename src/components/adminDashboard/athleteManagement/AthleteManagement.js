@@ -160,8 +160,9 @@ const AthleteManagement = () => {
             onClick={() => handleViewDetails(record)}
           />
 
-          <Button icon={<EditOutlined />} 
-            onClick={() => handleEdit(record)} 
+          <Button 
+            icon={<EditOutlined />} 
+            onClick={() => handleEdit(record)}
           />
 
           <Popconfirm
@@ -178,7 +179,10 @@ const AthleteManagement = () => {
             cancelText="No"
             overlayClassName="vertical-popconfirm"
           >
-            <Button icon={<DeleteOutlined />} type="danger" />
+            <Button 
+              icon={<DeleteOutlined />}
+              danger
+            />
           </Popconfirm>
         </div>
       ),
@@ -187,7 +191,7 @@ const AthleteManagement = () => {
 
   // FETCH Athlete by ID Process
   const handleViewDetails = (athlete) => {
-    navigate(`/admin/athlete-details/${athlete.id}`);
+    navigate(`/dashboard/athlete-details/${athlete.id}`);
   };
 
 

@@ -46,7 +46,7 @@ function Header() {
   
 
   return (
-    <header className="header">
+    <div className="header">
       <h2 className="header-left"> Club d'Athlétisme</h2>
       
       
@@ -76,7 +76,7 @@ function Header() {
         <Button className="btn-login" type="primary" onClick={isAuthenticated ? handleLogoutClick : handleLoginClick }>{isAuthenticated ?"Logout" : "Login"}</Button>
 
       </div>
-    </header>
+    </div>
   );
 }
 

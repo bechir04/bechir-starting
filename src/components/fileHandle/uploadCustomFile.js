@@ -12,7 +12,7 @@ import {
   notification,
 } from "antd";
 
-const UploadCustomFile = ({ uploadCustomFiles, id = null }) => {
+const UploadCustomFile = ({ uploadCustomFiles, id = null}) => {
 
   const [isUploadingFile, setIsUploadingFile] = useState(false);
   const [files, setFiles] = useState([]);
@@ -37,12 +37,13 @@ const UploadCustomFile = ({ uploadCustomFiles, id = null }) => {
 
     const formatData = new FormData();
     files.map((item) => formatData.append("files", item));
-
     if (id) {
       await uploadCustomFiles(id, formatData);
     } else {
+      console.log("uploadCustomFiles null id ");
       await uploadCustomFiles(formatData);
     }
+    setIsUploadingFile(false);
     setFiles(null);
     setPreviewImages(null);
     notification.success({

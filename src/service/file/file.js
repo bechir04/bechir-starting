@@ -48,11 +48,24 @@ export const downloadFile = async(fileName) => {
   }
 }
 
+export const getAllDocumentFiles = () => {
+  return fetch ({
+      method : 'get' ,
+      url : BaseUrl + APIS.FILE.getAllDocumentFiles,
+  });
+}
 
 export const getAllFilesByAthlete = (athleteId) => {
   return fetch ({
       method : 'get' ,
       url : BaseUrl + APIS.FILE.getAllFilesByAthlete(athleteId) ,
+  });
+}
+
+export const getAllFilesByEvent = (eventId) => {
+  return fetch ({
+      method : 'get' ,
+      url : BaseUrl + APIS.FILE.getAllFilesByEvent(eventId) ,
   });
 }
 
@@ -62,4 +75,5 @@ export const deleteFileById = (formData) => {
         url : BaseUrl + APIS.FILE.deleteFileById(formData) 
     });
 }
+
 

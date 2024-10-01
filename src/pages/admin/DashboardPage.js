@@ -13,7 +13,6 @@ import {
   GalleryManagement,
   AnnouncementManagement,
   AdministrativeDocument,
-  HistoryDocument,
 } from "../../components/adminDashboard/index.js";
 import AthleteProfile from "../../components/AthleteProfile/AthleteProfile.js";
 import { useSelector } from "react-redux";
@@ -58,7 +57,7 @@ const DashboardPage = () => {
   };
   const contentStyle = {
     backgroundColor: themeColor,
-    marginLeft: "10px",
+    marginLeft: "2em",
     marginTop: "3px",
     padding: "24px",
     background: "#fff",
@@ -86,14 +85,9 @@ const DashboardPage = () => {
           key: "5",
           icon: <FileTextOutlined />,
           label: (
-            <span className="bold-menu-item">Administrative Document</span>
+            <span className="bold-menu-item">Admin Document</span>
           ),
-        },
-        {
-          key: "6",
-          icon: <CalendarOutlined />,
-          label: <span className="bold-menu-item">history Document</span>,
-        },
+        }
       ],
     },
     {
@@ -109,7 +103,6 @@ const DashboardPage = () => {
     <GalleryManagement />,
     <AnnouncementManagement />,
     <AdministrativeDocument />,
-    <HistoryDocument />,
   ];
 
   return (
@@ -129,7 +122,7 @@ const DashboardPage = () => {
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
-          width={200}
+          width={220}
           collapsedWidth={80}
           transitionProperty={"width"}
           transitionDuration={0.6}
@@ -157,16 +150,6 @@ const DashboardPage = () => {
 
         <Layout style={rightLayoutStyle} className="dashboard-right-layout">
           <Content style={contentStyle} id="dashboard-content">
-            <Routes>
-              <Route
-                path="/athlete-details/:athleteId"
-                element={<AthleteProfile />}
-              />
-              <Route
-                path="/admin/event-details"
-                element={<EventManagement />}
-              />
-            </Routes>
             {content[selectedNavItem]}
           </Content>
         </Layout>

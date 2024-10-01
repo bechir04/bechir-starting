@@ -6,6 +6,7 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
   }
   
   .event-header {
@@ -76,5 +77,11 @@
     display: block;
     margin: 20px auto;
     width: 200px;
+  }
+
+  .event-images-container{
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
   }
   

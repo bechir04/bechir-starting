@@ -3,6 +3,5 @@ export {default as EventManagement} from './eventManagement/eventManagement.js';
 export {default as AnnouncementManagement} from "./announcementManagement/announcementManagement.js";
 export {default as GalleryManagement} from './filesManagement/galleryManagement.js';
 export {default as AdministrativeDocument} from "./filesManagement/administrativeDocument.js" ;
-export {default as HistoryDocument} from "./filesManagement/historyDocument.js" ;
 
 

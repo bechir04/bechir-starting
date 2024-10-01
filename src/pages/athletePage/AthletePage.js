@@ -31,7 +31,7 @@ const AthletePage = () => {
   }
 
   const handleSeeAllButtonClick = (athleteId)=> {
-    navigate(`/athlete-details/${athleteId}`)
+    navigate(`/athlete-profile/${athleteId}`)
   }
 
   const onPageNumberChange = (value) =>{

@@ -23,7 +23,7 @@ import {
   PublicRoute,
   EventDetails,
   AthleteProfile,
-  Footer,
+  Footer
 } from "./components/index";
 
 import store from "./redux/store";
@@ -33,7 +33,8 @@ import { Provider } from "react-redux";
 import { useLocation } from 'react-router-dom';
 
 import DashboardPage from "./pages/admin/DashboardPage";
-import AthleteDetails from "./components/adminDashboard/athleteManagement/athlete-details";
+import AthleteDetailsDashboard from "./components/adminDashboard/athleteManagement/AthleteDetailsDashboard.js";
+import EventDetailsDashboard from "./components/adminDashboard/eventManagement/EventDetailsDashboard.js"
 
 const ConditionalFooter = () => {
   const location = useLocation();
@@ -64,9 +65,7 @@ const App = () => {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <header className="header">
-            <Header />
-          </header>
+          <Header/>
 
           <div className="content-container">
           <Routes>
@@ -84,25 +83,21 @@ const App = () => {
             <Route path="/athletes" element={<AthletePage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/event-details/:eventId" element={<EventDetails />} />
+            <Route path="/athlete-profile/:athleteId" element={<AthleteProfile />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/membership" element={<MembershipPage />} />
             <Route path="/partners" element={<PartnersPage />} />
             <Route path="/contact" element={<ContactPage />} />
 
             {/* routes for admins only */}
-            <Route
-              path="/dashboard/*"
-              element={
+            <Route path="/dashboard/*" element={
                 <AdminRoute>
                   <DashboardPage />
                 </AdminRoute>
               }
             />
-            <Route
-              path="/admin/athlete-details/:athleteId"
-              element={<AthleteDetails />}
-            />
-
+            <Route path="/dashboard/athlete-details/:athleteId" element={<AthleteDetailsDashboard />} />
+            <Route path="/dashboard/event-details/:eventId" element={<EventDetailsDashboard />} />
             {/* route for non authenticated users */}
             <Route
               path="/"

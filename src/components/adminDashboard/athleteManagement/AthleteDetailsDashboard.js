@@ -14,11 +14,13 @@ import {
 import {
   createPerformance,
   getPerformanceByAthleteId,
-} from "../../../service/perfromance/performance";
-import { getAthleteById  , ulploadFilesToAthlete} from "../../../service/athlete/athlete";
+} from "../../../service/perfromance/performance.js";
+import { getAthleteById  , ulploadFilesToAthlete} from "../../../service/athlete/athlete.js";
+import { getAllFilesByAthlete } from "../../../service/file/file.js";
 import UploadCustomFile from "../../fileHandle/uploadCustomFile.js"
+import FetchFiles from "../../fileHandle/fetchFiles.js";
 
-const AthleteDetails = () => {
+const AthleteDetailsDashboard = () => {
   const { athleteId } = useParams();
 
   const [athlete, setAthlete] = useState({});
@@ -186,8 +188,14 @@ const AthleteDetails = () => {
           </Modal>
         </>
       )}
+      <div className="images-container">
+        <FetchFiles 
+          getSpecificFiles={getAllFilesByAthlete}
+          id={athleteId}
+        />
+      </div>    
     </div>
   );
 };
 
-export default AthleteDetails;
+export default AthleteDetailsDashboard;

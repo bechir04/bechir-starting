@@ -22,6 +22,8 @@ import moment from "moment";
 import Title from "antd/es/typography/Title";
 import { useNavigate } from "react-router";
 
+import "./eventManagement.css";
+
 const EventManagement = () => {
   const navigate = useNavigate(); 
   
@@ -110,22 +112,27 @@ const EventManagement = () => {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <div>
+        <div  className="icon-container">
           <Button
             icon={<EyeOutlined />}
             onClick={() => handleViewDetails(record)}
           />
+
           <Button
             icon={<EditOutlined />}
             style={{ marginRight: 8 }}
             onClick={() => handleEditEvent(record)}
           />
+
           <Popconfirm
             title="Are you sure to delete this event?"
             onConfirm={() => handleDeleteEvent(record.id)}
             placement="left"
           >
-            <Button icon={<DeleteOutlined />} danger />
+            <Button 
+              icon={<DeleteOutlined />} 
+              danger 
+            />
           </Popconfirm>
         </div>
       ),
@@ -133,7 +140,7 @@ const EventManagement = () => {
   ];
 
   const handleViewDetails = (event) => {
-    navigate(`/admin/event-details/${event.id}`);
+    navigate(`/dashboard/event-details/${event.id}`);
   };
 
 

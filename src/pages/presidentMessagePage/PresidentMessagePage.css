@@ -21,10 +21,7 @@
     color: #555;
     line-height: 1.6;
   }
-  
-  .president-message-page section img {
-    margin-top: 20px;
-    max-width: 100%;
-    border-radius: 10px;
+  .president-message{
+    width: 95%;
   }
   

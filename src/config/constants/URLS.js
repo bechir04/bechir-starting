@@ -22,6 +22,7 @@ export const APIS ={
         fetchAllEvents :(pageNumber,sortedBY ,type) => `/events?pageNumber=${pageNumber}&sortedBY=${sortedBY}&type=${type}`,
         updateEvent :(id) => `/events/${id}` ,
         deleteEventById : (id) => `/events/${id}`,
+        ulploadFilesToEvent : (eventId)=> `/events/${eventId}`,
     },
     EVENTREGISTRATION :{
         registerAthleteToEvent : (eventId) => `/register_event/${eventId}`,
@@ -49,6 +50,8 @@ export const APIS ={
         uploadMultipleFiles : '/files/upload_files' ,
         downloadFile : (fileName) => `/files/download_file?fileName=${encodeURIComponent(fileName)}` ,
         getAllFilesByAthlete : (athleteId) => `/files/athlete/${athleteId}`,
+        getAllFilesByEvent : (eventId) => `/files/event/${eventId}`,
+        getAllDocumentFiles : `/files`,
         deleteFileById : (fielId) => `/files/${fielId}`
     } ,
     PERFORMANCE: {

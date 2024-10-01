@@ -81,11 +81,6 @@ h3 {
   opacity: 0.9;
 }
 
-.ant-btn-danger {
-  border-color: #ff4d4f;
-  color: #ff4d4f;
-}
-
 .ant-btn-danger:hover {
   background-color: #ff4d4f;
   color: #fff;
