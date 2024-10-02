@@ -56,7 +56,7 @@ const AthleteProfile = () => {
             </p>
           </div>
 
-          <div className="images-container">
+          <div className="athlete-images-container">
           <FetchFiles 
                 getSpecificFiles={getAllFilesByAthlete}
                 id={athleteId}

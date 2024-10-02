@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchEvent } from "../../service/event/event";
-import {registerAthleteToEvent,getAllParticipants,isAthleteRegistered} from "../../service/event/eventRegistration";
+import {
+  registerAthleteToEvent,
+  getAllParticipants,
+  isAthleteRegistered,
+} from "../../service/event/eventRegistration";
 import { fetchAllAthleteNoteByEventId } from "../../service/event/EventPerformance";
 import { notification, Button } from "antd";
 import { useSelector } from "react-redux";
 import FetchFiles from "../fileHandle/fetchFiles";
-import {getAllFilesByEvent} from "../../service/file/file.js"
+import { getAllFilesByEvent } from "../../service/file/file.js";
 
 import "./eventDetails.css";
 
@@ -71,15 +75,15 @@ const EventDetails = () => {
     }
   };
 
-  const getAllParticipantsData = async(eventId) =>{
+  const getAllParticipantsData = async (eventId) => {
     try {
       const res = await getAllParticipants(eventId);
       console.log("all participants  :", res);
-      setParticipants(res) ;
+      setParticipants(res);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     fetchEventData(eventId);
@@ -89,8 +93,7 @@ const EventDetails = () => {
   }, [eventId]);
 
   return (
-    <>
-    <div className="sections-container">
+    <div className="event-details-container">
       <div className="event-header">
         <h3>{event.title}</h3>
         <h3>
@@ -98,7 +101,8 @@ const EventDetails = () => {
         </h3>
         <p>{event.type}</p>
       </div>
-      {(userRole === "ROLE_ATHLETE" && currentDate < eventDate )&&
+      {userRole === "ROLE_ATHLETE" &&
+        currentDate < eventDate &&
         (!isRegistered ? (
           <Button
             type="primary"
@@ -110,83 +114,79 @@ const EventDetails = () => {
         ) : (
           <p>You are already registered for this event.</p>
         ))}
-      
+
       <div className="participant-section">
-      {currentDate > eventDate ? (
-        <>
-          <h2>All Participant Notes of This Event</h2>
-          {participantsNotes.length > 0 ? (
-            <table className="participant-table">
-              <thead>
-                <tr>
-                  <th>Athlete Name</th>
-                  <th>Note</th>
-                </tr>
-              </thead>
-              <tbody>
-                {participantsNotes.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.athleteDTO.firstname} {item.athleteDTO.lastname}
-                    </td>
-                    <td>
-                      {item.noteEvent ? item.noteEvent : "There is no note yet"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="no-participants">No participant notes found.</p>
-          )}
-        </>
-      ) : (
-        <>
-          <h2>All Athlete Registrations of This Event</h2>
-          {participants.length >0 ? (
-            <>
+        {currentDate > eventDate ? (
+          <>
+            <h2>All Participant Notes of This Event</h2>
+            {participantsNotes.length > 0 ? (
               <table className="participant-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>lastname</th>
-                    <th>branch</th>
-                    <th>hasMedal</th>
+                    <th>Athlete Name</th>
+                    <th>Note</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {participants.map((registration  , index) => (
+                  {participantsNotes.map((item, index) => (
                     <tr key={index}>
-                      <td>{registration.firstname}</td>
-                      <td>{registration.lastname}</td>
-                      <td>{registration.branch}</td>
-                      <td>{registration.hasMedal ? "Yes" : "No"}</td>
+                      <td>
+                        {item.athleteDTO.firstname} {item.athleteDTO.lastname}
+                      </td>
+                      <td>
+                        {item.noteEvent
+                          ? item.noteEvent
+                          : "There is no note yet"}
+                      </td>
                     </tr>
-                  ))
-                  }
+                  ))}
                 </tbody>
               </table>
-            </>
-          ) : (
-            <><p className="no-participants">there is no registrations yet.</p></>
-          )
+            ) : (
+              <p className="no-participants">No participant notes found.</p>
+            )}
+          </>
+        ) : (
+          <>
+            <h2>All Athlete Registrations of This Event</h2>
+            {participants.length > 0 ? (
+              <>
+                <table className="participant-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>lastname</th>
+                      <th>branch</th>
+                      <th>hasMedal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {participants.map((registration, index) => (
+                      <tr key={index}>
+                        <td>{registration.firstname}</td>
+                        <td>{registration.lastname}</td>
+                        <td>{registration.branch}</td>
+                        <td>{registration.hasMedal ? "Yes" : "No"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            ) : (
+              <>
+                <p className="no-participants">
+                  there is no registrations yet.
+                </p>
+              </>
+            )}
+          </>
+        )}
+      </div>
 
-          }
-        </>
-      )}
+      <div className="event-images-container">
+        <FetchFiles getSpecificFiles={getAllFilesByEvent} id={eventId} />
+      </div>
     </div>
-    </div>
-
-    <div className="event-images-container">
-      <FetchFiles
-        getSpecificFiles={getAllFilesByEvent}
-        id={eventId}
-      />
-    </div>
-
-    </>
-
-    
   );
 };
 

@@ -47,11 +47,11 @@
     padding-bottom: 10px;
   }
 
-  .images-container{
+  .athlete-images-container{
     display: flex;
     gap: 1em;
   }
-  .images-container img{
+  .athlete-images-container img{
     border-radius: 15px;
   }
   

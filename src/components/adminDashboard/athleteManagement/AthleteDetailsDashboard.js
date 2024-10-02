@@ -20,6 +20,8 @@ import { getAllFilesByAthlete } from "../../../service/file/file.js";
 import UploadCustomFile from "../../fileHandle/uploadCustomFile.js"
 import FetchFiles from "../../fileHandle/fetchFiles.js";
 
+import "./athleteDetailsDashboard.css";
+
 const AthleteDetailsDashboard = () => {
   const { athleteId } = useParams();
 
@@ -188,7 +190,7 @@ const AthleteDetailsDashboard = () => {
           </Modal>
         </>
       )}
-      <div className="images-container">
+      <div className="athlete-images-container">
         <FetchFiles 
           getSpecificFiles={getAllFilesByAthlete}
           id={athleteId}
