@@ -33,6 +33,7 @@ function EventsPage() {
   const [sortedBy , setSortedBy] = useState('createdAt');
   const [events , setEvents]= useState([]);
   const[selectedType , setSelectedType] = useState('');
+  
   const navigate = useNavigate(); 
 
   const onPageNumberChange = (value)=> {
@@ -105,6 +106,7 @@ function EventsPage() {
 
       }
     </div>
+    
     </div>
   );
 }

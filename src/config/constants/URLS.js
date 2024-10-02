@@ -22,6 +22,7 @@ export const APIS ={
         fetchAllEvents :(pageNumber,sortedBY ,type) => `/events?pageNumber=${pageNumber}&sortedBY=${sortedBY}&type=${type}`,
         updateEvent :(id) => `/events/${id}` ,
         deleteEventById : (id) => `/events/${id}`,
+        ulploadFilesToEvent : (eventId)=> `/events/${eventId}`,
     },
     EVENTREGISTRATION :{
         registerAthleteToEvent : (eventId) => `/register_event/${eventId}`,
@@ -41,7 +42,23 @@ export const APIS ={
         getAllAthletes :(pageNumber , sortedBy)=> `/athlete?pageNumber=${pageNumber}&sortingColumn=${sortedBy}`,
         getAllCustomAthletes : (checkedColumns)=> `/athlete/admin/custom?checkedColumns=${checkedColumns}`,
         updateAthlete :(athleteId)=> `/athlete/admin/${athleteId}`,
-        deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`
+        deleteAthleteById :(athleteId)=> `/athlete/admin/${athleteId}`,
+        ulploadFilesToAthlete : (athleteId)=> `/athlete/${athleteId}`,
+    },
+    FILE :{
+        uploadFile :  '/files/upload_file' , 
+        uploadMultipleFiles : '/files/upload_files' ,
+        downloadFile : (fileName) => `/files/download_file?fileName=${encodeURIComponent(fileName)}` ,
+        getAllFilesByAthlete : (athleteId) => `/files/athlete/${athleteId}`,
+        getAllFilesByEvent : (eventId) => `/files/event/${eventId}`,
+        getAllDocumentFiles : `/files`,
+        deleteFileById : (fielId) => `/files/${fielId}`
+    } ,
+    PERFORMANCE: {
+        createPerformance:(athleteId) =>`/performance/${athleteId}` ,
+        updatePerformance:(performanceId) =>`/performance/${performanceId}`  ,
+        getPerformanceByAthleteId: (athleteId) =>`/performance/${athleteId}`,
+        deletePerformanceById: (performanceId) =>`/performance/${performanceId}`,
     }
 
 }

@@ -37,7 +37,7 @@ export const updateAnnouncement = (id, data) => {
   });
 };
 
-export const deleteAnnouncement = (id) => {
+export const deleteAnnouncementById = (id) => {
   return fetch({
     method: "delete",
     url: BaseUrl + APIS.ANNOUNCEMENT.deleteAnnouncement(id),

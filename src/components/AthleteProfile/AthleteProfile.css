@@ -4,18 +4,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2em;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    width: 100%;
     margin: 40px auto;
   }
   
-  h2 {
+  .athlete-details-container > h2 {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #333;
+    color: #f39148;
     margin-bottom: 10px;
   }
   
@@ -45,6 +46,14 @@
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
   }
+
+  .images-container{
+    display: flex;
+    gap: 1em;
+  }
+  .images-container img{
+    border-radius: 15px;
+  }
   
   @media (max-width: 768px) {
     .athlete-details-container {
@@ -59,4 +68,5 @@
       font-size: 1rem;
     }
   }
+
   

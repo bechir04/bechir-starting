@@ -5,6 +5,8 @@ import {registerAthleteToEvent,getAllParticipants,isAthleteRegistered} from "../
 import { fetchAllAthleteNoteByEventId } from "../../service/event/EventPerformance";
 import { notification, Button } from "antd";
 import { useSelector } from "react-redux";
+import FetchFiles from "../fileHandle/fetchFiles";
+import {getAllFilesByEvent} from "../../service/file/file.js"
 
 import "./eventDetails.css";
 
@@ -87,6 +89,7 @@ const EventDetails = () => {
   }, [eventId]);
 
   return (
+    <>
     <div className="sections-container">
       <div className="event-header">
         <h3>{event.title}</h3>
@@ -172,8 +175,18 @@ const EventDetails = () => {
         </>
       )}
     </div>
-
     </div>
+
+    <div className="event-images-container">
+      <FetchFiles
+        getSpecificFiles={getAllFilesByEvent}
+        id={eventId}
+      />
+    </div>
+
+    </>
+
+    
   );
 };
 

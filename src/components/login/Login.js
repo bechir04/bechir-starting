@@ -1,4 +1,3 @@
-
 import { Form, Input, Button, Typography, notification } from 'antd';
 import { useState  , useEffect} from 'react';
 import { useNavigate } from 'react-router';
@@ -6,7 +5,7 @@ import React from 'react';
 import { loginService } from '../../service/auth/Auth';
 import { useDispatch } from 'react-redux';
 import { AuthAction } from '../../redux/actions';
-import './login.css';
+import './auth.css';
 
 
 
@@ -47,7 +46,7 @@ const Login = () => {
                 token : response.accessToken ,
                 refreshToken : response.refreshToken 
             }));
-            navigate('/');
+            navigate('/about');
         })
             .catch((err) => {
                 console.log(err);
@@ -60,9 +59,9 @@ const Login = () => {
 
     return (
         <div className='auth-container'>
-            <div className='auth-content'>
+            <div className='auth-card'>
                 <Form method='POST' name='login-from' className='login-from' onFinish={handleLoginClick}>
-                    <Typography.Title className='sports-title'>Login</Typography.Title>
+                    <Typography.Title className='auth-title'>Login</Typography.Title>
 
                     <label>Email :</label>
                     <Form.Item
@@ -76,7 +75,7 @@ const Login = () => {
                         <Input name="email" value={loginData.email} onChange={(e) => handleDataChange(e)} />
                     </Form.Item>
 
-                    <label>Password</label>
+                    <label>Password :</label>
                     <Form.Item
                         className='password'
                         name='password'
@@ -86,8 +85,10 @@ const Login = () => {
                     >
                         <Input.Password name='password'  value={loginData.password} onChange={(e) => handleDataChange(e)} />
                     </Form.Item>
-                    <Button name='submit' type='primary' className='submit-btn' htmlType='submit' style={{ marginRight: '10px' } } >Login</Button>
-                    <Button type="primary"  className='submit-btn' onClick={handleSignUpClick}>SignUp</Button>
+                    <div className='button-container'>
+                        <Button name='submit' type='primary' className='submit-btn' htmlType='submit' style={{ marginRight: '10px' } } >Login</Button>
+                        <Button type="primary"  className='submit-btn' onClick={handleSignUpClick}>SignUp</Button>
+                    </div>
                 </Form>
             </div>
         </div>

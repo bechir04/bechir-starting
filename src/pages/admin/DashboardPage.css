@@ -1,5 +1,3 @@
-/* dashboard.css */
-
 /* General layout and background styling */
 .logo {
   height: 32px;
@@ -7,41 +5,53 @@
   margin: 16px;
 }
 
-/* Ensuring the content area looks clean and has good spacing */
-.site-layout-background {
-  background: #001529;
-  color: #fff;
-}
+/* User profile styling */
 
-/* Making sure the content has padding and looks well-placed */
-.ant-layout-content {
-  background: #fff;
-  padding: 24px;
-  margin: 0;
-  min-height: 280px;
-}
-
-/* Adding some spacing between the edges of the content */
-.ant-layout {
-  padding: 0 24px;
-}
-
-/* Styling the menu inside the sider */
-.ant-menu-item {
-  font-size: 16px;
-}
-
-/* Changing color on menu item hover and active selection */
-.ant-menu-item:hover, .ant-menu-item-active {
-  background-color: #1890ff;
-}
-
-/* Styling the header for better readability */
-.ant-layout-header {
-  background: #fff;
-  padding: 0 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.user-profile {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.user-profile .ant-avatar {
+  margin-bottom: 10px;
+}
+
+.user-info {
+  text-align: center;
+  font-weight: bold;
+}
+
+.user-info .ant-typography {
+  margin: 0;
+  color: #000000 !important ;
+}
+
+.user-info p {
+  margin: 0;
+  font-weight: bold;
+  color: #000000 !important ;
+}
+.bold-menu-item {
+  color: #444;
+  font-weight: bold;
+}
+.dashboard-sider > .ant-layout-sider-trigger {
+  background-color: hsl(193, 19%, 72%);
+}
+
+.dashboard-sider {
+  box-shadow: 6px 0px 17px 1px rgba(0, 0, 0, 0.26);
+  -webkit-box-shadow: 6px 0px 17px 1px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 6px 0px 17px 1px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+}
+#dashboard-content {
+  background-color: #f5f5f5 !important;
+}
+
+.dashboard-right-layout {
+  border-radius: 10px;
 }

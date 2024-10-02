@@ -1,11 +1,11 @@
 import React  from "react";
 import { Button, notification } from 'antd';
 import { useNavigate , Link} from 'react-router-dom';
+import { useSelector , useDispatch } from "react-redux";
+
 import { AuthAction } from '../../redux/actions';
 import { logoutService } from '../../service/auth/Auth';
-
 import "./Header.css";
-import { useSelector , useDispatch } from "react-redux";
 
 function Header() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated) ;
@@ -46,18 +46,11 @@ function Header() {
   
 
   return (
-    <header className="header">
-      <h2 className="header-left"> Club d'Athltisme</h2>
+    <div className="header">
+      <h2 className="header-left"> Club d'Athlétisme</h2>
       
       
       <div className="header-right">
-
-        <Button className="btn-login" onClick={isAuthenticated ? handleLogoutClick : handleLoginClick }>{isAuthenticated ?"Logout" : "Login"}</Button>
-        
-        <button className="menu-button" >
-          <div className="menu-icon"></div>
-        </button>
-        
         <nav>
           <ul>
             {!isAuthenticated ? (
@@ -79,8 +72,11 @@ function Header() {
             )}
           </ul>
         </nav> 
+        
+        <Button className="btn-login" type="primary" onClick={isAuthenticated ? handleLogoutClick : handleLoginClick }>{isAuthenticated ?"Logout" : "Login"}</Button>
+
       </div>
-    </header>
+    </div>
   );
 }
 

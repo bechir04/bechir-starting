@@ -1,60 +1,160 @@
-import React from 'react';
-import { Layout, Menu } from 'antd';
-import { Link, Route, Routes } from 'react-router-dom';
-import { UserOutlined, CalendarOutlined, PictureOutlined } from '@ant-design/icons';
-
-// Import your CRUD components
-import {AthleteManagement , EventManagement , GalleryManagement} from "../../components/adminDashboard/index"
+import { useState } from "react";
+import { ConfigProvider, Layout, Menu, Avatar, Typography } from "antd";
+import {
+  UserOutlined,
+  CalendarOutlined,
+  FileTextOutlined,
+  FileOutlined,
+} from "@ant-design/icons";
+import { Route, Routes } from "react-router";
+import {
+  AthleteManagement,
+  EventManagement,
+  GalleryManagement,
+  AnnouncementManagement,
+  AdministrativeDocument,
+} from "../../components/adminDashboard/index.js";
+import AthleteProfile from "../../components/AthleteProfile/AthleteProfile.js";
+import { useSelector } from "react-redux";
+import "./DashboardPage.css";
 
 const { Header, Sider, Content } = Layout;
+const { Title } = Typography;
 
 const DashboardPage = () => {
+  const [themeColor, setThemeColor] = useState("#f5f5f5");
+  const [collapsed, setCollapsed] = useState(false);
+  const [selectedNavItem, setSelectedNavItem] = useState(0);
+  const currentUser = useSelector((state) => state.auth?.user);
+
+  /** STYLING */
+
+  const siderStyle = {
+    backgroundColor: themeColor,
+    overflow: "auto",
+    height: "100vh",
+    position: "fixed",
+    insetInlineStart: 0,
+    top: 50,
+    bottom: 0,
+    scrollbarWidth: "thin",
+    scrollbarColor: "unset",
+  };
+  const MenuStyle = {
+    backgroundColor: themeColor,
+  };
+
+  const leftLayoutStyle = {
+    backgroundColor: themeColor,
+    minHeight: "100vh",
+  };
+  const rightLayoutStyle = {
+    marginInlineStart: collapsed ? 80 : 200,
+    minHeight: "100vh", 
+    overflow: "hidden", 
+    transitionProperty: "margin-inline-start",
+    transitionDuration: "0.6",
+  };
+  const contentStyle = {
+    backgroundColor: themeColor,
+    marginLeft: "2em",
+    marginTop: "3px",
+    padding: "24px",
+    background: "#fff",
+    borderRadius: "10px",
+  };
+
 
   const menuItems = [
     {
-      key: '1',
+      key: "1",
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/athletes">Athletes</Link>,
+      label: <span className="bold-menu-item">Athletes</span>,
     },
     {
-      key: '2',
+      key: "2",
       icon: <CalendarOutlined />,
-      label: <Link to="/dashboard/events">Events</Link>,
+      label: <span className="bold-menu-item">Events</span>,
     },
     {
-      key: '3',
-      icon: <PictureOutlined />,
-      label: <Link to="/dashboard/gallery">Gallery</Link>,
+      key: "3",
+      icon: <FileOutlined />,
+      label: <span className="bold-menu-item">Files</span>,
+      children: [
+        {
+          key: "5",
+          icon: <FileTextOutlined />,
+          label: (
+            <span className="bold-menu-item">Admin Document</span>
+          ),
+        }
+      ],
     },
     {
-      key: '4',
+      key: "4",
       icon: <UserOutlined />,
-      label: <Link to="/dashboard/announcements">Announcements</Link>,
-    }
+      label: <span className="bold-menu-item">Announcements</span>,
+    },
   ];
 
+  const content = [
+    <AthleteManagement />,
+    <EventManagement />,
+    <GalleryManagement />,
+    <AnnouncementManagement />,
+    <AdministrativeDocument />,
+  ];
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider>
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
-      </Sider>
+    <ConfigProvider
+      theme={{
+        components: {
+          Layout: {
+            colorBgContainer: "#f0f2f5", // Default background for Layout containers
+          },
+        },
+      }}
+    >
+      <Layout style={leftLayoutStyle} hasSider>
+        <Sider
+          className="dashboard-sider"
+          style={siderStyle}
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          width={220}
+          collapsedWidth={80}
+          transitionProperty={"width"}
+          transitionDuration={0.6}
+        >
+          <div className="user-profile">
+            <Avatar size={64} icon={<UserOutlined />} />
+            <div className="user-info">
+              <Title level={5} style={{ color: "#d0d0d008", margin: 0 }}>
+                {currentUser.firstname ? currentUser.firstname : "Unknown"}{" "}
+                {currentUser.lastname ? currentUser.lastname : "Unknown"}
+              </Title>
+              <p style={{ color: "#d0d0d0", margin: 0 }}>Admin</p>
+            </div>
+          </div>
 
-      <Layout>
-        <Header className="site-layout-background" style={{ padding: '0 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ color: 'white', margin: 0 }}>Welcome to Dashboard</h2>
-        </Header>
-        
-        <Content style={{ margin: '16px', padding: '24px', background: '#fff' }}>
-          <Routes>
-            <Route path="/athletes" element={<AthleteManagement />} />
-            <Route path="/events" element={<EventManagement />} />
-            <Route path="/gallery" element={<GalleryManagement />} />
-          </Routes>
-        </Content>
+          <Menu
+            style={MenuStyle}
+            mode="inline"
+            items={menuItems}
+            defaultSelectedKeys={["1"]}
+            selectedKeys={[String(selectedNavItem + 1)]}
+            onSelect={({ key }) => setSelectedNavItem(parseInt(key, 10) - 1)}
+          />
+        </Sider>
+
+        <Layout style={rightLayoutStyle} className="dashboard-right-layout">
+          <Content style={contentStyle} id="dashboard-content">
+            {content[selectedNavItem]}
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </ConfigProvider>
   );
 };
 

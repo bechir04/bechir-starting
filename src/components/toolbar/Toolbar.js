@@ -12,6 +12,13 @@ const Toolbar = ({
   return (
     <div className="toolbar-conatiner">
         {/* selecting sorting column */}
+      
+        <label 
+          htmlFor="sortedBySelect" 
+          className="sorted-by-label"
+        >
+          Sorted By:
+        </label>
       <Select 
       name="selectedColumn"
       value={sortedBy} 

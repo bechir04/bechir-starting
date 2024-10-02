@@ -1,130 +1,107 @@
 
-/* HomePage.css */
-
-/* General styles */
 .home-page {
-    padding: 20px;
-    background: rgb(111,251,63);
-    background: radial-gradient(circle, rgba(111,251,63,1) 0%, rgba(215,254,201,1) 35%, rgba(242,147,73,1) 65%, rgba(239,90,9,1) 100%);    font-family: 'Arial', sans-serif;
-    text-align: center;
-  }
-  
-  /* Club Logo with hover effect */
-  .club-logo {
-    margin: 30px 0;
-    display: flex;
-    justify-content: center;
-    
-  }
-  
-  .club-logo img {
-    margin-left: 80%;
-    width: 300px;
-    transition: transform 1.3s ease,
-  }
-  
-  .logo-hover:hover {
-    transform: scale(1.5);
-  }
-  
-  /* Animated Description */
-  .club-description {
-    margin: 40px 0;
-  }
-  
-  .club-description h2 {
-    font-size: 32px;
-    color: #ff7300;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  
-  .animated-description {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.8;
-    animation: fadeIn 2s ease-in-out;
-  }
-  
-  /* Fade-in effect for description */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Club Image Carousel */
-  .club-carousel {
-    margin: 30px auto; /* Center the carousel */
-    max-width: 80%; /* Limit the width to 80% of the page */
-  }
-  
-  .club-carousel h2 {
-    font-size: 28px;
-    color: #ff7300;
-    margin-bottom: 20px;
-  }
-  
-  .carousel-image {
-    width: 100%; /* Ensure the image takes up the full width of the carousel */
-    height: auto; /* Keep the aspect ratio */
-    max-height: 400px; /* Limit the height to a reasonable size */
-    object-fit: cover; /* Crop the image to fit within the bounds */
-  }
-  
-  /* Partners Section */
-  .partners-section {
-    margin: 50px 0;
-  }
-  
-  .partners-section h2 {
-    font-size: 28px;
-    color: #ff7300;
-    margin-bottom: 20px;
-  }
-  
-  .partners-logos {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .partner-logo {
-    max-width: 150px; /* Adjust the size of partner logos */
-    height: auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .partner-logo:hover {
-    transform: scale(1.1);
-    filter: brightness(1.2);
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .carousel-image {
-      height: 250px;
-    }
-  
-    .partner-logo {
-      width: 120px;
-    }
-  
-    .club-description h2 {
-      font-size: 26px;
-    }
-  
-    .club-description p {
-      font-size: 16px;
-    }
-  
-    .club-carousel h2, .partners-section h2 {
-      font-size: 24px;
-    }
-  }
-  
+  padding: 40px 20px;
+}
+
+.club-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.club-logo img {
+  width: 260px;
+  transition: transform 0.5s ease;
+  text-align: center;
+  margin-left: 600px;
+}
+
+.logo-hover:hover {
+  transform: scale(1.1);
+}
+
+.club-description {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.club-description h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.animated-description {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.club-carousel {
+  margin: 40px 0;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.partners-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.partner-logo {
+  width: 150px;
+  height: auto;
+}
+
+.quick-overview {
+  margin: 50px 0;
+}
+
+.quick-overview h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.overview-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.overview-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+}
+
+.overview-card h3 {
+  font-size: 20px;
+  color: #ff6b6b;
+  margin-bottom: 10px;
+}
+
+.overview-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.overview-card ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
